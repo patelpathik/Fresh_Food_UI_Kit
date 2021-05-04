@@ -56,6 +56,7 @@ class ThemeIcon {
   static const String ORDERS = "${imagePath}orders.svg";
   static const String PADLOCK = "${imagePath}padlock.svg";
   static const String PAYMENT = "${imagePath}payment.svg";
+  static const String PLUS = "${imagePath}plus.svg";
   static const String RECIPES = "${imagePath}recipes.svg";
   static const String REFRESH = "${imagePath}refresh.svg";
   static const String SEARCH = "${imagePath}search.svg";
@@ -67,6 +68,7 @@ class ThemeIcon {
   static const String STORE = "${imagePath}store.svg";
   static const String SUMMARY = "${imagePath}summary.svg";
   static const String TRASH = "${imagePath}trash.svg";
+  static const String VOICE = "${imagePath}voice.svg";
 }
 
 class Images {
@@ -84,4 +86,19 @@ class Images {
 
   static const String onBoarding_Dark_2 =
       "${imagePath}onboarding/graphic-onboarding-dark-2.svg";
+}
+
+class StoreImages {
+  StoreImages._();
+
+  static const String imagePath = "./assets/images/store/";
+
+  static const String apple = "${imagePath}apple.png";
+  static const String banana = "${imagePath}banana.png";
+  static const String broccoli = "${imagePath}broccoli.png";
+  static const String kale = "${imagePath}kale.png";
+  static const String lemon = "${imagePath}lemon.png";
+  static const String orange = "${imagePath}orange.png";
+  static const String pepper = "${imagePath}pepper.png";
+  static const String strawberry = "${imagePath}strawberry.png";
 }
