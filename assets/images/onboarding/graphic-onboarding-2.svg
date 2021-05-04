@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="315" height="320" viewBox="0 0 315 320">
+  <g id="graphic-onboarding" transform="translate(1090.139 -280.614)">
+    <circle id="circle" cx="157.5" cy="157.5" r="157.5" transform="translate(-1090.139 285.614)" fill="#f2fff1"/>
+    <g id="cross-1" transform="translate(476.196 -89.158)">
+      <line id="line" y2="10.409" transform="translate(-1484.947 465.347)" fill="none" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="line-2" data-name="line" x1="10.409" transform="translate(-1490.151 470.552)" fill="none" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    </g>
+    <g id="cross-2" transform="translate(431.196 -125.158)">
+      <line id="line-3" data-name="line" y2="10.409" transform="translate(-1283.53 521.364)" fill="none" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="line-4" data-name="line" x1="10.409" transform="translate(-1288.735 526.568)" fill="none" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    </g>
+    <g id="cross-3" transform="translate(345.196 23.842)">
+      <line id="line-5" data-name="line" y2="10.409" transform="translate(-1283.53 521.364)" fill="none" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="line-6" data-name="line" x1="10.409" transform="translate(-1288.735 526.568)" fill="none" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    </g>
+    <circle id="ellipse-1" cx="6.169" cy="6.169" r="6.169" transform="translate(-1050.313 453.541)" fill="none" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    <circle id="ellipse-2" cx="6.169" cy="6.169" r="6.169" transform="translate(-915.741 321.933)" fill="none" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" opacity="0"/>
+    <circle id="ellipse-3" cx="6.169" cy="6.169" r="6.169" transform="translate(-831.629 487.514)" fill="none" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    <g id="like">
+      <path id="path" d="M-911.522,282.614h-42.215a17.257,17.257,0,0,0-17.237,17.237v23.655a17.257,17.257,0,0,0,17.237,17.237h10.643l10.465,9.057,10.464-9.057h10.643a17.257,17.257,0,0,0,17.237-17.237V299.851A17.257,17.257,0,0,0-911.522,282.614Z" fill="#f2fff1" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="path-2" data-name="path" d="M-916.673,305.135a8.259,8.259,0,0,0-7.745-5.791,7.95,7.95,0,0,0-5.641,2.372h0a13.171,13.171,0,0,0-2.57,3.224,13.188,13.188,0,0,0-2.571-3.224h0a7.95,7.95,0,0,0-5.641-2.372,8.259,8.259,0,0,0-7.745,5.791c-3.191,8.942,9.443,18.671,14.206,21.953a3.086,3.086,0,0,0,3.5,0C-926.116,323.806-913.482,314.077-916.673,305.135Z" fill="#acffb2" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    </g>
+    <g id="phone">
+      <rect id="rectangle" width="78.648" height="140.462" rx="14.832" transform="translate(-971.954 372.854)" fill="#dfffca" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <rect id="rectangle-2" data-name="rectangle" width="78.648" height="58.54" rx="14.832" transform="translate(-971.954 372.854)" fill="#acffb2" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <rect id="rectangle-3" data-name="rectangle" width="47.17" height="14.097" rx="6.352" transform="translate(-956.215 483.09)" fill="#7bed8d"/>
+      <line id="line-7" data-name="line" x2="47.17" transform="translate(-956.215 448.07)" fill="#acffb2" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="line-8" data-name="line" x2="47.17" transform="translate(-956.215 458.31)" fill="#acffb2" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="line-9" data-name="line" x2="47.17" transform="translate(-956.215 468.551)" fill="#acffb2" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    </g>
+    <g id="icon-apple" transform="translate(460.196 30.842)">
+      <path id="path-3" data-name="path" d="M-1371.2,398.563c.105-8.518-4.914-18.4-14.843-17.307a16.822,16.822,0,0,0-3.89.913,6.807,6.807,0,0,1-4.7,0,16.815,16.815,0,0,0-3.889-.913c-9.93-1.1-14.948,8.789-14.843,17.307" fill="#dfffca" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="path-4" data-name="path" d="M-1392.281,381.551a7.927,7.927,0,0,0-7.931-7.932" fill="none" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="path-5" data-name="path" d="M-1380.7,369.97a11.574,11.574,0,0,1-11.581,11.581A11.575,11.575,0,0,1-1380.7,369.97Z" fill="#dfffca" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="path-6" data-name="path" d="M-1398.921,389.172s-5.919,2.167-6.679,9.917" fill="#dfffca" stroke="#7bed8d" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    </g>
+  </g>
+</svg>
