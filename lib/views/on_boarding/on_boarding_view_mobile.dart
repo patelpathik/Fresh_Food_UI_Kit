@@ -5,6 +5,7 @@ import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
+import 'package:fresh_food/views/store/store_view.dart';
 import 'package:fresh_food/widgets/button.dart';
 import 'package:fresh_food/widgets/switch.dart';
 
@@ -83,7 +84,10 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                       )
                     : Button(
                         title: "GET STARTED",
-                        onPressed: () {},
+                        onPressed: () => Navigator.pushReplacementNamed(
+                          context,
+                          Store.TAG,
+                        ),
                       ),
               ),
             ),
