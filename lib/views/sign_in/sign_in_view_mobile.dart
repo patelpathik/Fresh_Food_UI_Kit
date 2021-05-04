@@ -59,7 +59,10 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
       SizedBox(height: 30),
       Button(
         title: "SIGN IN",
-        onPressed: () => Navigator.pushNamed(context, OnBoarding.TAG),
+        onPressed: () => Navigator.pushReplacementNamed(
+          context,
+          OnBoarding.TAG,
+        ),
       ),
       SizedBox(height: 100),
     ];
@@ -92,7 +95,10 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
       SizedBox(height: 30),
       Button(
         title: "CREATE ACCOUNT",
-        onPressed: () => Navigator.pushNamed(context, OnBoarding.TAG),
+        onPressed: () => Navigator.pushReplacementNamed(
+          context,
+          OnBoarding.TAG,
+        ),
       ),
       SizedBox(height: 100),
     ];
