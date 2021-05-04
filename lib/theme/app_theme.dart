@@ -17,12 +17,26 @@ class AppTheme {
   ThemeData getAppTheme() {
     return ThemeData(
       scaffoldBackgroundColor: COLORS.WHITE,
+      appBarTheme: AppBarTheme(
+        elevation: 0.0,
+        backgroundColor: COLORS.WHITE,
+        titleTextStyle: TextStyle(
+          color: COLORS.MEDIUM_DARK_GREY,
+        ),
+      ),
     );
   }
 
   ThemeData getDarkTheme() {
     return ThemeData(
       scaffoldBackgroundColor: COLORS.DARKER_GREY,
+      appBarTheme: AppBarTheme(
+        elevation: 0.0,
+        backgroundColor: COLORS.DARKER_GREY,
+        titleTextStyle: TextStyle(
+          color: COLORS.MEDIUM_DARK_GREY,
+        ),
+      ),
     );
   }
 }
