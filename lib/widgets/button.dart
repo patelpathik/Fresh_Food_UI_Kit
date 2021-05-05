@@ -31,7 +31,7 @@ class Button extends StatelessWidget {
           onTap: onPressed,
           child: Container(
             padding: EdgeInsets.only(top: 13, bottom: 13),
-            height: 50,
+            height: AppBar().preferredSize.height,
             alignment: Alignment.center,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
