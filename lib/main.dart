@@ -4,6 +4,7 @@ import 'package:fresh_food/utils/app_template.dart';
 import 'package:fresh_food/views/home/home_view.dart';
 import 'package:fresh_food/views/on_boarding/on_boarding_view.dart';
 import 'package:fresh_food/views/product/product_view.dart';
+import 'package:fresh_food/views/recipes/recipes_view.dart';
 import 'package:fresh_food/views/search/search_view.dart';
 import 'package:fresh_food/views/sign_in/sign_in.dart';
 import 'package:fresh_food/views/splash_screen/splash_screen.dart';
@@ -54,6 +55,9 @@ class MyApp extends StatelessWidget {
             break;
           case HomeView.TAG:
             page = HomeView();
+            break;
+          case Recipes.TAG:
+            page = Recipes();
             break;
         }
         return MaterialPageRoute(
