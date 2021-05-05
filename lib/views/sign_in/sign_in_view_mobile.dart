@@ -5,6 +5,7 @@ import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/views/on_boarding/on_boarding_view.dart';
+import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
 import 'package:fresh_food/widgets/button.dart';
 import 'package:fresh_food/widgets/input_field.dart';
 
@@ -20,6 +21,8 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
   static bool isSignUp = false;
 
   bool isDark = false;
+
+  double bottomBoxH = AppBar().preferredSize.height * 2;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +113,8 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: SizeConfig.safeBlockVertical * 10,
+              height: bottomBoxH,
+              padding: EdgeInsets.only(top: bottomBoxH * 0.15),
               child: Center(
                 child: CleanButton(
                   title: isSignUp ? "SIGN IN" : "CREATE ACCOUNT",
@@ -120,41 +124,35 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
             ),
           ),
           /* scroll view */
-          Container(
-            height: SizeConfig.safeBlockVertical * 85,
-            width: SizeConfig.screenWidth,
-            padding: EdgeInsets.only(
-              left: SizeConfig.screenWidth * 0.1,
-              right: SizeConfig.screenWidth * 0.1,
-            ),
-            decoration: BoxDecoration(
-              color: isDark ? COLORS.DARKER_GREY : COLORS.WHITE,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(40),
-                bottomRight: Radius.circular(40),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: isDark ? Colors.black38 : Colors.grey,
-                  offset: Offset(0, 0),
-                  blurRadius: 25,
-                  spreadRadius: 5,
-                ),
-              ],
-            ),
-            child: Column(
-              children: [
-                SizedBox(height: 50),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: isSignUp ? signUp : signIn,
-                    ),
+          Column(
+            children: [
+              Expanded(
+                child: Container(
+                  width: SizeConfig.screenWidth,
+                  padding: EdgeInsets.only(
+                    left: SizeConfig.screenWidth * 0.1,
+                    right: SizeConfig.screenWidth * 0.1,
+                  ),
+                  decoration: CurvedShadowDecoration.getDecoration(
+                    isDark: isDark,
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 50),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: isSignUp ? signUp : signIn,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 50),
+                    ],
                   ),
                 ),
-                SizedBox(height: 50),
-              ],
-            ),
+              ),
+              SizedBox(height: bottomBoxH),
+            ],
           ),
           /* close button for create account case */
           AnimatedOpacity(

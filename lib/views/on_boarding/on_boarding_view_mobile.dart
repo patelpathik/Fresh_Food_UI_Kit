@@ -5,7 +5,9 @@ import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
+import 'package:fresh_food/views/home/home_view.dart';
 import 'package:fresh_food/views/store/store_view.dart';
+import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
 import 'package:fresh_food/widgets/button.dart';
 import 'package:fresh_food/widgets/switch.dart';
 
@@ -38,6 +40,7 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
   SwiperController _slideController = new SwiperController();
 
   bool isDark = false;
+  double bottomBoxH = AppBar().preferredSize.height * 2;
 
   @override
   void initState() {
@@ -72,8 +75,9 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: SizeConfig.safeBlockVertical * 10,
+              height: bottomBoxH,
               width: SizeConfig.screenWidth * 0.8,
+              padding: EdgeInsets.only(top: bottomBoxH * 0.15),
               child: Center(
                 child: _slideController.index != 2
                     ? CleanButton(
@@ -86,184 +90,184 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                         title: "GET STARTED",
                         onPressed: () => Navigator.pushReplacementNamed(
                           context,
-                          Store.TAG,
+                          HomeView.TAG,
                         ),
                       ),
               ),
             ),
           ),
           /* main content */
-          Container(
-            height: SizeConfig.safeBlockVertical * 85,
-            width: SizeConfig.screenWidth,
-            decoration: BoxDecoration(
-              color: isDark ? COLORS.DARKER_GREY : COLORS.WHITE,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(40),
-                bottomRight: Radius.circular(40),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: isDark ? Colors.black38 : Colors.grey,
-                  offset: Offset(0, 0),
-                  blurRadius: 25,
-                  spreadRadius: 5,
-                ),
-              ],
-            ),
-            child: Swiper(
-              controller: _slideController,
-              onIndexChanged: (value) => setState(() {
-                _slideController.index = value;
-              }),
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                TextStyle captionTextStyle = TextStyle(
-                  fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
-                  color: COLORS.MEDIUM_GREY,
-                );
-                Widget customPagination = Container(
-                  margin: EdgeInsets.only(bottom: 25),
-                  height: 20,
-                  width: 100,
-                  alignment: Alignment.center,
-                  child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 3,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => Align(
-                      alignment: Alignment.center,
-                      child: AnimatedContainer(
-                        duration: new Duration(milliseconds: 500),
-                        curve: Curves.easeInCubic,
-                        height: 10,
-                        width: 10,
-                        margin: EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          color: (_slideController.index + 1) == index
-                              ? Color(0xFFA6B8C9)
-                              : COLORS.MEDIUM_GREY,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                    ),
+          Column(
+            children: [
+              Expanded(
+                child: Container(
+                  width: SizeConfig.screenWidth,
+                  decoration: CurvedShadowDecoration.getDecoration(
+                    isDark: isDark,
                   ),
-                );
-                /* image with caption */
-                if (index != 2) {
-                  return Container(
-                    color: Colors.transparent,
-                    padding: EdgeInsets.only(
-                      left: SizeConfig.screenWidth * 0.1,
-                      right: SizeConfig.screenWidth * 0.1,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(height: 25),
-                        Container(
-                          alignment: Alignment.center,
-                          width: SizeConfig.screenWidth,
-                          child: SvgPicture.asset(
-                            slides[index].imagePath,
-                            fit: BoxFit.fitWidth,
+                  child: Swiper(
+                    controller: _slideController,
+                    onIndexChanged: (value) => setState(() {
+                      _slideController.index = value;
+                    }),
+                    itemCount: 3,
+                    itemBuilder: (context, index) {
+                      TextStyle captionTextStyle = TextStyle(
+                        fontSize:
+                            Theme.of(context).textTheme.subtitle1.fontSize,
+                        color: COLORS.MEDIUM_GREY,
+                      );
+                      Widget customPagination = Container(
+                        margin: EdgeInsets.only(bottom: 25),
+                        height: 20,
+                        width: 100,
+                        alignment: Alignment.center,
+                        child: ListView.builder(
+                          padding: EdgeInsets.zero,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 3,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) => Align(
+                            alignment: Alignment.center,
+                            child: AnimatedContainer(
+                              duration: new Duration(milliseconds: 500),
+                              curve: Curves.easeInCubic,
+                              height: 10,
+                              width: 10,
+                              margin: EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                color: (_slideController.index + 1) == index
+                                    ? Color(0xFFA6B8C9)
+                                    : COLORS.MEDIUM_GREY,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
                           ),
                         ),
-                        Text(
-                          slides[index].caption,
-                          textAlign: TextAlign.center,
-                          style: captionTextStyle,
-                        ),
-                        customPagination,
-                      ],
-                    ),
-                  );
-                }
-                /* recipe preferences */
-                else {
-                  TextStyle titleTextStyle = TextStyle(
-                    fontSize: Theme.of(context).textTheme.headline6.fontSize,
-                    color: COLORS.MEDIUM_GREY,
-                  );
-                  TextStyle descTextStyle = TextStyle(
-                    fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
-                    color: COLORS.MEDIUM_GREY,
-                  );
-                  List<Widget> elements = [
-                    Container(
-                      padding: EdgeInsets.only(top: 50),
-                      child: Text(
-                        "Recipe Preferences",
-                        style: titleTextStyle,
-                      ),
-                    ),
-                  ];
-
-                  List<Widget> scrollItems = [];
-                  recipePreferences.forEach((element) {
-                    scrollItems.add(
-                      Container(
-                        padding: EdgeInsets.only(top: 10, bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(element.preference, style: descTextStyle),
-                            ThemeSwitch(
-                              value: element.value,
-                              onPress: () {
-                                /* change all */
-                                if (recipePreferences.indexOf(element) == 0) {
-                                  bool v = !element.value;
-                                  recipePreferences.forEach((e) {
-                                    setState(() {
-                                      e.value = v;
-                                    });
-                                  });
-                                }
-                                /* change individual */
-                                else {
-                                  setState(() {
-                                    element.value = !element.value;
-                                  });
-                                }
-                              },
+                      );
+                      /* image with caption */
+                      if (index != 2) {
+                        return Container(
+                          color: Colors.transparent,
+                          padding: EdgeInsets.only(
+                            left: SizeConfig.screenWidth * 0.1,
+                            right: SizeConfig.screenWidth * 0.1,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(height: 25),
+                              Container(
+                                alignment: Alignment.center,
+                                width: SizeConfig.screenWidth,
+                                child: SvgPicture.asset(
+                                  slides[index].imagePath,
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              ),
+                              Text(
+                                slides[index].caption,
+                                textAlign: TextAlign.center,
+                                style: captionTextStyle,
+                              ),
+                              customPagination,
+                            ],
+                          ),
+                        );
+                      }
+                      /* recipe preferences */
+                      else {
+                        TextStyle titleTextStyle = TextStyle(
+                          fontSize:
+                              Theme.of(context).textTheme.headline6.fontSize,
+                          color: COLORS.MEDIUM_GREY,
+                        );
+                        TextStyle descTextStyle = TextStyle(
+                          fontSize:
+                              Theme.of(context).textTheme.subtitle1.fontSize,
+                          color: COLORS.MEDIUM_GREY,
+                        );
+                        List<Widget> elements = [
+                          Container(
+                            padding: EdgeInsets.only(top: 50),
+                            child: Text(
+                              "Recipe Preferences",
+                              style: titleTextStyle,
                             ),
-                          ],
-                        ),
-                      ),
-                    );
-                  });
+                          ),
+                        ];
 
-                  elements.add(SingleChildScrollView(
-                    child: Column(children: scrollItems),
-                  ));
+                        List<Widget> scrollItems = [];
+                        recipePreferences.forEach((element) {
+                          scrollItems.add(
+                            Container(
+                              padding: EdgeInsets.only(top: 10, bottom: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(element.preference,
+                                      style: descTextStyle),
+                                  ThemeSwitch(
+                                    value: element.value,
+                                    onPress: () {
+                                      /* change all */
+                                      if (recipePreferences.indexOf(element) ==
+                                          0) {
+                                        bool v = !element.value;
+                                        recipePreferences.forEach((e) {
+                                          setState(() {
+                                            e.value = v;
+                                          });
+                                        });
+                                      }
+                                      /* change individual */
+                                      else {
+                                        setState(() {
+                                          element.value = !element.value;
+                                        });
+                                      }
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        });
 
-                  elements.add(Text(
-                    "Tailor your Recipes feed exactly how you like it",
-                    textAlign: TextAlign.center,
-                    style: descTextStyle,
-                  ));
-                  return Container(
-                    color: Colors.transparent,
-                    padding: EdgeInsets.only(
-                      left: SizeConfig.screenWidth * 0.1,
-                      right: SizeConfig.screenWidth * 0.1,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ...elements,
-                        customPagination,
-                      ],
-                    ),
-                  );
-                }
-              },
-              loop: false,
-              curve: Curves.fastOutSlowIn,
-              autoplay: false,
-            ),
+                        elements.add(SingleChildScrollView(
+                          child: Column(children: scrollItems),
+                        ));
+
+                        elements.add(Text(
+                          "Tailor your Recipes feed exactly how you like it",
+                          textAlign: TextAlign.center,
+                          style: descTextStyle,
+                        ));
+                        return Container(
+                          color: Colors.transparent,
+                          padding: EdgeInsets.only(
+                            left: SizeConfig.screenWidth * 0.1,
+                            right: SizeConfig.screenWidth * 0.1,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ...elements,
+                              customPagination,
+                            ],
+                          ),
+                        );
+                      }
+                    },
+                    loop: false,
+                    curve: Curves.fastOutSlowIn,
+                    autoplay: false,
+                  ),
+                ),
+              ),
+              SizedBox(height: bottomBoxH),
+            ],
           ),
         ],
       ),
