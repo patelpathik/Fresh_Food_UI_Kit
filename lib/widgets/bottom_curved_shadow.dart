@@ -11,10 +11,10 @@ class CurvedShadowDecoration {
       ),
       boxShadow: [
         BoxShadow(
-          color: isDark ? Colors.black38 : Colors.grey,
-          offset: Offset(0, 0),
-          blurRadius: 25,
-          spreadRadius: 5,
+          color: isDark ? Colors.black38 : Color(0xFFE1E1E1).withOpacity(0.75),
+          offset: Offset(0, 20),
+          blurRadius: 50,
+          spreadRadius: -1,
         ),
       ],
     );
