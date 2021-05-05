@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fresh_food/models/paragraph.dart';
 import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
@@ -88,7 +89,6 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
         setState(() => isDark = value);
       });
     }
-    print("isDark:: $isDark");
 
     Widget appBar = Container(
       height: AppBar().preferredSize.height,
@@ -397,13 +397,6 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
       ),
     );
   }
-}
-
-class Para {
-  final String title;
-  final String desc;
-
-  Para({@required this.title, @required this.desc});
 }
 
 class Description extends StatelessWidget {
