@@ -77,7 +77,7 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
                       color: Colors.transparent,
                       child: InkWell(
                         splashColor: COLORS.GREEN,
-                        onTap: () => Navigator.of(context).pop(),
+                        onTap: () => Globals.homeNavStackIndex.setValue(0),
                         child: Container(
                           padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                           height: 35,

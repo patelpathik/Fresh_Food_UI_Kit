@@ -77,7 +77,9 @@ class _StoreMobilePortraitState extends State<StoreMobilePortrait> {
                 color: Colors.transparent,
                 child: InkWell(
                   splashColor: COLORS.GREEN,
-                  onTap: () => Navigator.pushNamed(context, Search.TAG),
+                  onTap: () {
+                    Globals.homeNavStackIndex.setValue(1);
+                  },
                   child: Container(
                     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                     height: 35,
@@ -194,35 +196,6 @@ class _StoreMobilePortraitState extends State<StoreMobilePortrait> {
               ),
             ),
           ),
-          /* bottom nav bar */
-          Container(
-            alignment: Alignment.center,
-            height: AppBar().preferredSize.height,
-            width: SizeConfig.screenWidth * 0.8,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SvgPicture.asset(ThemeIcon.STORE, color: COLORS.GREEN),
-                SvgPicture.asset(ThemeIcon.RECIPES),
-                Container(
-                  height: AppBar().preferredSize.height * 0.8,
-                  width: AppBar().preferredSize.height * 0.8,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: COLORS.MEDIUM_DARK_GREY,
-                    shape: BoxShape.circle,
-                  ),
-                  child: SvgPicture.asset(
-                    ThemeIcon.PLUS,
-                    color: COLORS.WHITE,
-                  ),
-                ),
-                SvgPicture.asset(ThemeIcon.CART),
-                SvgPicture.asset(ThemeIcon.SETTINGS),
-              ],
-            ),
-          ),
-          SizedBox(height: 5),
         ],
       ),
     );
