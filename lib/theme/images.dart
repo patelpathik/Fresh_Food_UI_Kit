@@ -86,6 +86,10 @@ class Images {
 
   static const String onBoarding_Dark_2 =
       "${imagePath}onboarding/graphic-onboarding-dark-2.svg";
+
+  static const String recipes_bg = "${imagePath}recipes/content-bg.png";
+  static const String recipe_1 = "${imagePath}recipes/recipe_1.png";
+  static const String recipe_2 = "${imagePath}recipes/recipe_2.png";
 }
 
 class StoreImages {
