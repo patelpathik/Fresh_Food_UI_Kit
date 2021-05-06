@@ -101,9 +101,12 @@ class _StoreMobilePortraitState extends State<StoreMobilePortrait> {
     );
 
     Widget getBottomCarouselCard(int index) {
-      double marginLR = 10;
-      marginLR =
-          index == 0 || index == (bottomCarousel.length - 1) ? 20 : marginLR;
+      double marginL = 10;
+      double marginR = 10;
+
+      if (index == 0) marginL = 20;
+      if (index == (bottomCarousel.length - 1)) marginR = 20;
+
       return Card(
         elevation: 5.0,
         shape: RoundedRectangleBorder(
@@ -111,7 +114,7 @@ class _StoreMobilePortraitState extends State<StoreMobilePortrait> {
         ),
         color: bottomCarousel[index].bgColor,
         // margin: EdgeInsets.fromLTRB(10, 30, 10, 30),
-        margin: EdgeInsets.fromLTRB(marginLR, 30, marginLR, 30),
+        margin: EdgeInsets.fromLTRB(marginL, 30, marginR, 30),
         child: Container(
           width: 150,
           color: Colors.transparent,
