@@ -60,7 +60,7 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
     });
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1000),
+      duration: Duration(milliseconds: 500),
     );
     _animation = IntTween(begin: 4, end: 0).animate(_animationController);
     _animation.addListener(() => setState(() {}));
