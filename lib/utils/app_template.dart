@@ -19,6 +19,20 @@ class _AppTemplateState extends State<AppTemplate> {
       bool darkModeOn = brightness == Brightness.dark;
       Globals.isDarkMode.setValue(darkModeOn);
     }
-    return widget.child;
+
+    Widget content = SafeArea(child: widget.child);
+    return Globals.isDarkMode == null
+        ? FutureBuilder(
+            future: Globals.updatePrefs(),
+            builder: (context, snapshot) {
+              if (snapshot.data == null)
+                return Scaffold(
+                  body: Center(child: CircularProgressIndicator()),
+                );
+              else
+                return content;
+            },
+          )
+        : content;
   }
 }

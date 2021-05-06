@@ -20,19 +20,15 @@ class _SplashScreenState extends State<SplashScreen> {
   static Color dashColor = COLORS.WHITE;
 
   bool isAnimationComplete = false;
-  bool isDark = false;
-
-  @override
-  void initState() {
-    Globals.updatePrefs();
-    super.initState();
-  }
+  bool isDark =
+      Globals.isDarkMode != null ? Globals.isDarkMode.getValue() : false;
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
     if (Globals.isDarkMode != null) {
+      setState(() => isDark = Globals.isDarkMode.getValue());
       Globals.isDarkMode.listen((value) {
         setState(() => isDark = value);
       });
