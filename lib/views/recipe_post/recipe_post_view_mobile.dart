@@ -20,7 +20,7 @@ class _RecipePostMobilePortraitState extends State<RecipePostMobilePortrait> {
       Globals.isDarkMode != null ? Globals.isDarkMode.getValue() : false;
   double titleBarH = AppBar().preferredSize.height + 20;
 
-  int totalIngredients = 0;
+  int totalIngredients = 3;
 
   List<Para> nutritionalInfo = [
     Para(title: "Serving Size", desc: "250g"),
@@ -233,7 +233,7 @@ class _RecipePostMobilePortraitState extends State<RecipePostMobilePortrait> {
                     color: Colors.transparent,
                     child: InkWell(
                       splashColor: COLORS.GREEN,
-                      onTap: () {},
+                      onTap: () => Globals.homeNavStackIndex.setValue(2),
                       child: Container(
                         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                         height: 35,
