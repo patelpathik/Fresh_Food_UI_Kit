@@ -20,7 +20,8 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
 
   static bool isSignUp = false;
 
-  bool isDark = false;
+  bool isDark =
+      Globals.isDarkMode != null ? Globals.isDarkMode.getValue() : false;
 
   double bottomBoxH = AppBar().preferredSize.height * 2;
 
@@ -29,6 +30,7 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
     SizeConfig().init(context);
 
     if (Globals.isDarkMode != null) {
+      setState(() => isDark = Globals.isDarkMode.getValue());
       Globals.isDarkMode.listen((value) {
         setState(() => isDark = value);
       });

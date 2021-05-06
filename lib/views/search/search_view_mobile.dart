@@ -16,7 +16,8 @@ class SearchMobilePortrait extends StatefulWidget {
 }
 
 class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
-  bool isDark = false;
+  bool isDark =
+      Globals.isDarkMode != null ? Globals.isDarkMode.getValue() : false;
   String searchQuery = "";
 
   TextEditingController _searchController = new TextEditingController();
@@ -140,10 +141,11 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
                             context,
                             VoiceSearch.TAG,
                           );
-                          if (val == true) setState(() {
-                            searchQuery = "broccoli";
-                            _searchController.text = "broccoli";
-                          });
+                          if (val == true)
+                            setState(() {
+                              searchQuery = "broccoli";
+                              _searchController.text = "broccoli";
+                            });
                         },
                         child: Container(
                           height: AppBar().preferredSize.height * 0.8,

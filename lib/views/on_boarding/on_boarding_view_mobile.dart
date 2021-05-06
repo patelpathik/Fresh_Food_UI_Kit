@@ -39,7 +39,8 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
   ];
   SwiperController _slideController = new SwiperController();
 
-  bool isDark = false;
+  bool isDark =
+      Globals.isDarkMode != null ? Globals.isDarkMode.getValue() : false;
   double bottomBoxH = AppBar().preferredSize.height * 2;
 
   @override
