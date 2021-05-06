@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
             break;
         }
         return MaterialPageRoute(
-          builder: (context) => SafeArea(child: page),
+          builder: (context) => AppTemplate(child: page),
           settings: settings,
         );
       },
