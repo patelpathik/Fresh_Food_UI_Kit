@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_food/theme/app_theme.dart';
@@ -52,27 +53,55 @@ class BottomNavBar {
               borderRadius: BorderRadius.all(
                 Radius.circular(AppBar().preferredSize.height * 0.8),
               ),
-              child: Material(
-                color: COLORS.MEDIUM_DARK_GREY,
-                child: InkWell(
-                  child: Container(
-                    height: AppBar().preferredSize.height * 0.8,
-                    width: AppBar().preferredSize.height * 0.8,
-                    padding: EdgeInsets.all(
-                      AppBar().preferredSize.height * 0.2,
-                    ),
-                    child: SvgPicture.asset(
-                      ThemeIcon.PLUS,
-                      color: COLORS.WHITE,
-                    ),
+              child: GestureDetector(
+                onTap: () {
+                  if (Globals.homeNavStackIndex.getValue() != 4)
+                    Globals.homeNavStackIndex.setValue(4);
+                  else {
+                    int ind = Globals.lastKnownHomeNavStackIndex.getValue();
+                    Globals.homeNavStackIndex.setValue(ind);
+                  }
+                },
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  color: Globals.homeNavStackIndex.getValue() == 4
+                      ? COLORS.GREEN
+                      : COLORS.MEDIUM_DARK_GREY,
+                  height: AppBar().preferredSize.height * 0.8,
+                  width: AppBar().preferredSize.height * 0.8,
+                  padding: EdgeInsets.all(
+                    AppBar().preferredSize.height * 0.2,
+                  ),
+                  child: SvgPicture.asset(
+                    Globals.homeNavStackIndex.getValue() == 4
+                        ? ThemeIcon.CLOSE
+                        : ThemeIcon.PLUS,
+                    color: COLORS.WHITE,
                   ),
                 ),
               ),
             ),
           ),
-          SvgPicture.asset(
-            ThemeIcon.CART,
-            color: COLORS.MEDIUM_DARK_GREY,
+          GestureDetector(
+            onTap: () => Globals.homeNavStackIndex.setValue(5),
+            child: Badge(
+              badgeContent: Text(
+                "3",
+                style: TextStyle(
+                  color: COLORS.WHITE,
+                  fontSize: Theme.of(context).textTheme.caption.fontSize * 0.9,
+                ),
+              ),
+              badgeColor: COLORS.GREEN,
+              elevation: 0.0,
+              position: BadgePosition.bottomEnd(),
+              child: SvgPicture.asset(
+                ThemeIcon.CART,
+                color: Globals.homeNavStackIndex.getValue() == 5
+                    ? COLORS.GREEN
+                    : COLORS.MEDIUM_DARK_GREY,
+              ),
+            ),
           ),
           SvgPicture.asset(
             ThemeIcon.SETTINGS,
