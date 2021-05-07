@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/utils/app_template.dart';
+import 'package:fresh_food/views/edit_quantity/edit_quantity_view.dart';
 import 'package:fresh_food/views/home/home_view.dart';
 import 'package:fresh_food/views/on_boarding/on_boarding_view.dart';
 import 'package:fresh_food/views/product/product_view.dart';
@@ -10,6 +11,7 @@ import 'package:fresh_food/views/sign_in/sign_in.dart';
 import 'package:fresh_food/views/splash_screen/splash_screen.dart';
 import 'package:fresh_food/views/store/store_view.dart';
 import 'package:fresh_food/views/voice_search/voice_search_view.dart';
+import 'package:swipeable_page_route/swipeable_page_route.dart';
 
 import 'views/home/home_view.dart';
 
@@ -59,8 +61,11 @@ class MyApp extends StatelessWidget {
           case Recipes.TAG:
             page = Recipes();
             break;
+          case EditQuantity.TAG:
+            page = EditQuantity();
+            break;
         }
-        return MaterialPageRoute(
+        return SwipeablePageRoute(
           builder: (context) => AppTemplate(child: page),
           settings: settings,
         );
