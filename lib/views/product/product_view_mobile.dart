@@ -7,6 +7,7 @@ import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/widgets/button.dart';
+import 'package:fresh_food/widgets/quantity_selector.dart';
 
 class ProductMobilePortrait extends StatefulWidget {
   const ProductMobilePortrait({Key key}) : super(key: key);
@@ -17,11 +18,6 @@ class ProductMobilePortrait extends StatefulWidget {
 
 class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
   bool isDark = false;
-  FixedExtentScrollController _quantityController;
-  FixedExtentScrollController _typeController;
-
-  int selectedQuantityInd = 1;
-  int selectedTypeInd = 2;
 
   ExpandableController _expandableController = new ExpandableController();
 
@@ -65,12 +61,6 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
 
   @override
   void initState() {
-    _quantityController = new FixedExtentScrollController(
-      initialItem: selectedQuantityInd,
-    );
-    _typeController = new FixedExtentScrollController(
-      initialItem: selectedTypeInd,
-    );
     _expandableController.addListener(() {
       /* call setState
       *  as `_expandableController` never calls setState upon change
@@ -182,99 +172,7 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
         ),
       ),
       collapsed: Container(),
-      expanded: Container(
-        height: AppBar().preferredSize.height * 2.5,
-        alignment: Alignment.center,
-        child: Row(
-          children: [
-            /* quantity/figure */
-            Expanded(
-              flex: 1,
-              child: Container(
-                child: ListWheelScrollView.useDelegate(
-                  controller: _quantityController,
-                  onSelectedItemChanged: (value) {
-                    setState(() => selectedQuantityInd = value);
-                  },
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  itemExtent: 30,
-                  diameterRatio: 1,
-                  childDelegate: ListWheelChildBuilderDelegate(
-                    childCount: 10,
-                    builder: (context, index) => Text(
-                      "${index + 1}",
-                      style: TextStyle(
-                        // color: selectedQuantityInd == index
-                        //     ? COLORS.MEDIUM_GREY
-                        //     : COLORS.MEDIUM_DARK_GREY,
-                        color: selectedQuantityInd == index
-                            ? (isDark
-                                ? COLORS.MEDIUM_GREY
-                                : COLORS.MEDIUM_DARK_GREY)
-                            : (isDark
-                                ? COLORS.MEDIUM_GREY.withOpacity(0.5)
-                                : COLORS.MEDIUM_DARK_GREY.withOpacity(0.5)),
-                      ),
-                    ),
-                  ),
-                  useMagnifier: true,
-                  magnification: 1.25,
-                ),
-              ),
-            ),
-            /* measurement */
-            Expanded(
-              flex: 1,
-              child: Container(
-                child: ListWheelScrollView.useDelegate(
-                  controller: _typeController,
-                  onSelectedItemChanged: (value) {
-                    setState(() => selectedTypeInd = value);
-                  },
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  itemExtent: 30,
-                  diameterRatio: 1,
-                  childDelegate: ListWheelChildBuilderDelegate(
-                    childCount: type.length,
-                    builder: (context, index) => Text(
-                      type[index],
-                      style: TextStyle(
-                        // color: selectedTypeInd == index
-                        //     ? COLORS.MEDIUM_GREY
-                        //     : COLORS.MEDIUM_DARK_GREY,
-                        color: selectedTypeInd == index
-                            ? (isDark
-                                ? COLORS.MEDIUM_GREY
-                                : COLORS.MEDIUM_DARK_GREY)
-                            : (isDark
-                                ? COLORS.MEDIUM_GREY.withOpacity(0.5)
-                                : COLORS.MEDIUM_DARK_GREY.withOpacity(0.5)),
-                      ),
-                    ),
-                  ),
-                  useMagnifier: true,
-                  magnification: 1.25,
-                ),
-              ),
-            ),
-            /* total amount */
-            Expanded(
-              flex: 1,
-              child: Container(
-                // padding: EdgeInsets.only(bottom: 10),
-                alignment: Alignment.center,
-                child: Text(
-                  "£0.80",
-                  style: TextStyle(
-                    color:
-                        isDark ? COLORS.MEDIUM_GREY : COLORS.MEDIUM_DARK_GREY,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      expanded: QuantitySelector.quantitySelector(isDark: isDark),
       theme: ExpandableThemeData(
         hasIcon: false,
         tapHeaderToExpand: true,
