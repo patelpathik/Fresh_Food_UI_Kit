@@ -35,6 +35,8 @@ dependencies:
   flutter_scatter: ^0.1.0
   animated_text_kit: ^4.2.1
   expandable: ^5.0.1
+  badges: ^1.2.0
+  swipeable_page_route: ^0.2.1
 
 dev_dependencies:
   flutter_test:
