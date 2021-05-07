@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
+import 'package:fresh_food/views/cart/cart_view.dart';
+import 'package:fresh_food/views/quick_shop/quick_shop_view.dart';
 import 'package:fresh_food/views/recipe_post/recipe_post_view.dart';
 import 'package:fresh_food/views/recipes/recipes_view.dart';
 import 'package:fresh_food/views/search/search_view.dart';
@@ -20,7 +22,12 @@ class _HomeMobilePortraitState extends State<HomeMobilePortrait> {
   @override
   void initState() {
     setState(() => index = Globals.homeNavStackIndex.getValue());
-    Globals.homeNavStackIndex.listen((value) => setState(() => index = value));
+    Globals.homeNavStackIndex.listen(
+      (value) => setState(() {
+        if (index != 4) Globals.lastKnownHomeNavStackIndex.setValue(index);
+        index = value;
+      }),
+    );
     super.initState();
   }
 
@@ -30,6 +37,10 @@ class _HomeMobilePortraitState extends State<HomeMobilePortrait> {
       return false;
     } else if (index == 3) {
       Globals.homeNavStackIndex.setValue(2);
+      return false;
+    } else if (index == 4) {
+      int lastKnownIndex = Globals.lastKnownHomeNavStackIndex.getValue();
+      Globals.homeNavStackIndex.setValue(lastKnownIndex);
       return false;
     }
     return true;
@@ -43,6 +54,8 @@ class _HomeMobilePortraitState extends State<HomeMobilePortrait> {
       Search(),
       Recipes(),
       RecipePost(),
+      QuickShop(),
+      Cart(),
     ];
     return WillPopScope(
       onWillPop: _onBackPressed,
