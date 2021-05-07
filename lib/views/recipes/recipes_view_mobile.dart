@@ -54,9 +54,6 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
       /* open the image */
       if (value == 2)
         _animationController.forward();
-      /* close the image */
-      else
-        _animationController.reverse();
     });
     _animationController = AnimationController(
       vsync: this,
