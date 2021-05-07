@@ -8,6 +8,12 @@ class QuantitySelector {
     int selectedTypeInd = 2;
     FixedExtentScrollController _quantityController;
     FixedExtentScrollController _typeController;
+    _quantityController = new FixedExtentScrollController(
+      initialItem: selectedQuantityInd,
+    );
+    _typeController = new FixedExtentScrollController(
+      initialItem: selectedTypeInd,
+    );
     List<String> type = ["grams", "lbs", "heads", "packs", "punnets"];
     return Container(
       height: AppBar().preferredSize.height * 2.5,
