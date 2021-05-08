@@ -53,6 +53,7 @@ class ThemeIcon {
   static const String ACCOUNT = "${imagePath}account.svg";
   static const String ARROW_SMALL = "${imagePath}arrow-small.svg";
   static const String ARROW = "${imagePath}arrow.svg";
+  static const String BULB = "${imagePath}bulb.svg";
   static const String CALENDAR = "${imagePath}calendar.svg";
   static const String CART = "${imagePath}cart.svg";
   static const String CHAT = "${imagePath}chat.svg";
