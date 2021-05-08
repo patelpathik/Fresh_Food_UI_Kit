@@ -6,6 +6,7 @@ import 'package:fresh_food/views/quick_shop/quick_shop_view.dart';
 import 'package:fresh_food/views/recipe_post/recipe_post_view.dart';
 import 'package:fresh_food/views/recipes/recipes_view.dart';
 import 'package:fresh_food/views/search/search_view.dart';
+import 'package:fresh_food/views/settings/settings_view.dart';
 import 'package:fresh_food/views/store/store_view.dart';
 import 'package:fresh_food/widgets/bottom_navbar.dart';
 
@@ -56,6 +57,7 @@ class _HomeMobilePortraitState extends State<HomeMobilePortrait> {
       RecipePost(),
       QuickShop(),
       Cart(),
+      Settings(),
     ];
     return WillPopScope(
       onWillPop: _onBackPressed,
