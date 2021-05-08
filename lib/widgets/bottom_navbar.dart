@@ -103,9 +103,14 @@ class BottomNavBar {
               ),
             ),
           ),
-          SvgPicture.asset(
-            ThemeIcon.SETTINGS,
-            color: COLORS.MEDIUM_DARK_GREY,
+          GestureDetector(
+            onTap: () => Globals.homeNavStackIndex.setValue(6),
+            child: SvgPicture.asset(
+              ThemeIcon.SETTINGS,
+              color: Globals.homeNavStackIndex.getValue() == 6
+                    ? COLORS.GREEN
+                    : COLORS.MEDIUM_DARK_GREY,
+            ),
           ),
         ],
       ),
