@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pathikpatel.fresh_food">
    <application
-        android:label="fresh_food"
+        android:label="Fresh Food"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
