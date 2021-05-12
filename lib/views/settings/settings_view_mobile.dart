@@ -132,15 +132,15 @@ class _SettingsMobilePortraitState extends State<SettingsMobilePortrait> {
           height: cardH,
           width: cardH,
           padding: EdgeInsets.all(10),
-          child: ThemeSwitch(
-            value: !isDark,
-            onPress: () {
-              Globals.isDarkMode.setValue(!isDark);
-              debugPrint(Globals.isDarkMode.getValue().toString());
-              // setState(() => isDark = !isDark);
-              AppTheme().switchTheme(isDark);
-            },
-          ),
+          // child: ThemeSwitch(
+          //   value: !isDark,
+          //   onPress: () {
+          //     // Globals.isDarkMode.setValue(!isDark);
+          //     // debugPrint(Globals.isDarkMode.getValue().toString());
+          //     // setState(() => isDark = !isDark);
+          //     // AppTheme().switchTheme(isDark);
+          //   },
+          // ),
         ),
       );
 
@@ -153,7 +153,22 @@ class _SettingsMobilePortraitState extends State<SettingsMobilePortrait> {
     }
 
     Widget logOut() {
-      return Container();
+      return GestureDetector(
+        onTap: () => Navigator.of(context).pushReplacementNamed("/"),
+        child: settingsTile(
+          leading: Container(
+            height: cardH,
+            width: cardH,
+            padding: EdgeInsets.all(cardH * 0.3),
+            child: SvgPicture.asset(
+              ThemeIcon.BULB,
+              color: COLORS.GREEN,
+            ),
+          ),
+          title: "Sign Out",
+          trailing: Container(),
+        ),
+      );
     }
 
     return Scaffold(
@@ -165,9 +180,9 @@ class _SettingsMobilePortraitState extends State<SettingsMobilePortrait> {
           ),
           SizedBox(height: SizeConfig.screenWidth * 0.05),
           Expanded(child: settingsOptions()),
-          // Expanded(
-          //   child: logOut(),
-          // ),
+          Expanded(child: Container()),
+          logOut(),
+          SizedBox(height: SizeConfig.screenWidth * 0.025),
         ],
       ),
     );
