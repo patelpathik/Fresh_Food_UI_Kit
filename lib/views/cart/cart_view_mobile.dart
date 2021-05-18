@@ -7,9 +7,10 @@ import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
 import 'package:fresh_food/widgets/cart_item_tile.dart';
 import 'package:fresh_food/theme/images.dart';
 
-import '../../models/paragraph.dart';
-import '../../theme/app_theme.dart';
-import '../../widgets/button.dart';
+import 'package:fresh_food/models/paragraph.dart';
+import 'package:fresh_food/theme/app_theme.dart';
+import 'package:fresh_food/widgets/button.dart';
+import 'package:fresh_food/views/checkout/checkout_view.dart';
 
 class CartMobilePortrait extends StatefulWidget {
   const CartMobilePortrait({Key key}) : super(key: key);
@@ -70,9 +71,9 @@ class _CartMobilePortraitState extends State<CartMobilePortrait> {
     }
     Widget appBar = Container(
       padding: EdgeInsets.only(
-        // top: ThemeAppBar.titleBarH * 0.2,
-        // bottom: ThemeAppBar.titleBarH * 0.2,
-      ),
+          // top: ThemeAppBar.titleBarH * 0.2,
+          // bottom: ThemeAppBar.titleBarH * 0.2,
+          ),
       alignment: Alignment.center,
       decoration: CurvedShadowDecoration.getDecoration(isDark: isDark),
       child: ThemeAppBar.appBar(context, title: "Cart"),
@@ -168,7 +169,10 @@ class _CartMobilePortraitState extends State<CartMobilePortrait> {
           SizedBox(height: SizeConfig.screenWidth * 0.05),
           Container(
             width: SizeConfig.screenWidth * 0.85,
-            child: Button(title: "Checkout", onPressed: () {}),
+            child: Button(
+              title: "CHECKOUT",
+              onPressed: () => Navigator.pushNamed(context, Checkout.TAG),
+            ),
           ),
           SizedBox(height: SizeConfig.screenWidth * 0.025),
         ],
