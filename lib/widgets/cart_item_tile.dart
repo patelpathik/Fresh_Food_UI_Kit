@@ -54,8 +54,14 @@ class _ItemTileState extends State<ItemTile> {
         /* content */
         Row(
           children: [
-            Image.asset(widget.itemDetails.imagePath),
             Container(
+              height: height,
+              width: height * 1.5,
+              child: Image.asset(widget.itemDetails.imagePath),
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              height: height,
               child: Text(
                 widget.itemDetails.text,
                 style: titleTxtStyle,
