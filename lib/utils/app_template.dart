@@ -14,9 +14,14 @@ class AppTemplate extends StatefulWidget {
 class _AppTemplateState extends State<AppTemplate> {
   @override
   Widget build(BuildContext context) {
-    if (Globals.isDarkMode != null) {
+    if (Globals.isDarkMode != null &&
+        Globals.isCustomThemeSet != null &&
+        Globals.customDarkModePref != null) {
       var brightness = SchedulerBinding.instance.window.platformBrightness;
       bool darkModeOn = brightness == Brightness.dark;
+      if (Globals.isCustomThemeSet.getValue()) {
+        darkModeOn = Globals.customDarkModePref.getValue();
+      }
       Globals.isDarkMode.setValue(darkModeOn);
     }
 
