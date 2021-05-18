@@ -86,7 +86,7 @@ class BottomNavBar {
             onTap: () => Globals.homeNavStackIndex.setValue(5),
             child: Badge(
               badgeContent: Text(
-                "3",
+                "4",
                 style: TextStyle(
                   color: COLORS.WHITE,
                   fontSize: Theme.of(context).textTheme.caption.fontSize * 0.9,
@@ -108,8 +108,8 @@ class BottomNavBar {
             child: SvgPicture.asset(
               ThemeIcon.SETTINGS,
               color: Globals.homeNavStackIndex.getValue() == 6
-                    ? COLORS.GREEN
-                    : COLORS.MEDIUM_DARK_GREY,
+                  ? COLORS.GREEN
+                  : COLORS.MEDIUM_DARK_GREY,
             ),
           ),
         ],
