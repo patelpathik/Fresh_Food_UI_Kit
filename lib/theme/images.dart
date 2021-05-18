@@ -104,6 +104,13 @@ class Images {
   static const String recipes_bg = "${imagePath}recipes/content-bg.png";
   static const String recipe_1 = "${imagePath}recipes/recipe_1.png";
   static const String recipe_2 = "${imagePath}recipes/recipe_2.png";
+
+  static const String order_confirm =
+      "${imagePath}confirmation/order-confirmation.png";
+  static const String order_confirm_dark =
+      "${imagePath}confirmation/order-confirmation-dark.png";
+
+  static const String chat_cat = "${imagePath}cat.png";
 }
 
 class StoreImages {
