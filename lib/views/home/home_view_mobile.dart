@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/views/cart/cart_view.dart';
+import 'package:fresh_food/views/confirm_order/confirm_order.dart';
 import 'package:fresh_food/views/quick_shop/quick_shop_view.dart';
 import 'package:fresh_food/views/recipe_post/recipe_post_view.dart';
 import 'package:fresh_food/views/recipes/recipes_view.dart';
@@ -43,6 +44,9 @@ class _HomeMobilePortraitState extends State<HomeMobilePortrait> {
       int lastKnownIndex = Globals.lastKnownHomeNavStackIndex.getValue();
       Globals.homeNavStackIndex.setValue(lastKnownIndex);
       return false;
+    } else if (index == 7) {
+      Globals.homeNavStackIndex.setValue(0);
+      return false;
     }
     return true;
   }
@@ -58,6 +62,7 @@ class _HomeMobilePortraitState extends State<HomeMobilePortrait> {
       QuickShop(),
       Cart(),
       Settings(),
+      ConfirmOrder(),
     ];
     return WillPopScope(
       onWillPop: _onBackPressed,
