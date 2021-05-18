@@ -6,12 +6,16 @@ class InputField extends StatefulWidget {
   final String hintText;
   final bool obscureText;
   final Widget prefix;
+  final Widget suffix;
+  final TextEditingController controller;
 
   const InputField({
     Key key,
     this.hintText = "",
     this.obscureText = false,
     this.prefix,
+    this.suffix,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -31,9 +35,14 @@ class _InputFieldState extends State<InputField> {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(8)),
       child: TextField(
+        controller: widget.controller,
         textAlignVertical: TextAlignVertical.center,
         obscureText: widget.obscureText,
+        style: Theme.of(context).textTheme.subtitle1.copyWith(
+              color: COLORS.MEDIUM_DARK_GREY,
+            ),
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(15),
           border: InputBorder.none,
           fillColor: isDark ? COLORS.DARK_GREY : COLORS.LIGHTER_GREY,
           filled: true,
@@ -47,6 +56,14 @@ class _InputFieldState extends State<InputField> {
                   width: 10,
                   alignment: Alignment.center,
                   child: widget.prefix,
+                )
+              : null,
+          suffixIcon: widget.suffix != null
+              ? Container(
+                  height: 10,
+                  width: 10,
+                  alignment: Alignment.center,
+                  child: widget.suffix,
                 )
               : null,
         ),
