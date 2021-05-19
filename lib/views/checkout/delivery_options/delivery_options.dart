@@ -212,12 +212,6 @@ class _DeliveryOptionsState extends State<DeliveryOptions> {
           selectDate(),
           getTitle(title: "Select Time"),
           selectTime(),
-          IconButton(
-            icon: Icon(Icons.check),
-            onPressed: () {
-              print(availableDates);
-            },
-          ),
         ],
       ),
     );

@@ -70,10 +70,6 @@ class _CartMobilePortraitState extends State<CartMobilePortrait> {
       });
     }
     Widget appBar = Container(
-      padding: EdgeInsets.only(
-          // top: ThemeAppBar.titleBarH * 0.2,
-          // bottom: ThemeAppBar.titleBarH * 0.2,
-          ),
       alignment: Alignment.center,
       decoration: CurvedShadowDecoration.getDecoration(isDark: isDark),
       child: ThemeAppBar.appBar(context, title: "Cart"),
