@@ -6,7 +6,6 @@ import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/views/home/home_view.dart';
-import 'package:fresh_food/views/store/store_view.dart';
 import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
 import 'package:fresh_food/widgets/button.dart';
 import 'package:fresh_food/widgets/switch.dart';
