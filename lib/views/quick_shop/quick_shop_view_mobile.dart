@@ -3,11 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
+import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/widgets/appBar.dart';
 import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
 import 'package:fresh_food/widgets/counter.dart';
 import 'package:fresh_food/widgets/menu_bar.dart';
-import 'package:fresh_food/utils/sizeconfig.dart';
 
 class QuickShopMobilePortrait extends StatefulWidget {
   const QuickShopMobilePortrait({Key key}) : super(key: key);

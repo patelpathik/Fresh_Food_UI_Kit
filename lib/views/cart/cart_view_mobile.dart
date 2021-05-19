@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fresh_food/models/cart_item.dart';
-import 'package:fresh_food/utils/globals.dart';
-import 'package:fresh_food/utils/sizeconfig.dart';
-import 'package:fresh_food/widgets/appBar.dart';
-import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
-import 'package:fresh_food/widgets/cart_item_tile.dart';
-import 'package:fresh_food/theme/images.dart';
-
 import 'package:fresh_food/models/paragraph.dart';
 import 'package:fresh_food/theme/app_theme.dart';
-import 'package:fresh_food/widgets/button.dart';
+import 'package:fresh_food/theme/images.dart';
+import 'package:fresh_food/utils/globals.dart';
+import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/views/checkout/checkout_view.dart';
+import 'package:fresh_food/widgets/appBar.dart';
+import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
+import 'package:fresh_food/widgets/button.dart';
+import 'package:fresh_food/widgets/cart_item_tile.dart';
 
 class CartMobilePortrait extends StatefulWidget {
   const CartMobilePortrait({Key key}) : super(key: key);

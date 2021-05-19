@@ -9,7 +9,6 @@ import 'package:fresh_food/views/user_account/user_account.dart';
 import 'package:fresh_food/views/user_orders/user_orders.dart';
 import 'package:fresh_food/widgets/appBar.dart';
 import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
-
 import 'package:fresh_food/widgets/switch.dart';
 
 class SettingsMobilePortrait extends StatefulWidget {

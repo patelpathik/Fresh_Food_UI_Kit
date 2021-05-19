@@ -42,7 +42,8 @@ class _ThemeSwitchState extends State<ThemeSwitch> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(25)),
                   border: Border.all(
-                    color: widget.value ? COLORS.MEDIUM_DARK_GREY : COLORS.GREEN,
+                    color:
+                        widget.value ? COLORS.MEDIUM_DARK_GREY : COLORS.GREEN,
                   ),
                 ),
               ),

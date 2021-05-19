@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_food/models/cart_item.dart';
-
 import 'package:fresh_food/theme/app_theme.dart';
+import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/views/edit_quantity/edit_quantity_view.dart';
-
-import 'package:fresh_food/theme/images.dart';
 
 class ItemTile extends StatefulWidget {
   final bool isDark;

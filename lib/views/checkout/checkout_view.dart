@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:fresh_food/responsive/orientation_layout.dart';
 import 'package:fresh_food/responsive/screen_type_layout.dart';
 import 'package:fresh_food/views/checkout/checkout_view_mobile.dart';
