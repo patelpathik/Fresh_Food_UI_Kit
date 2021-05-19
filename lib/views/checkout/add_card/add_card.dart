@@ -5,6 +5,7 @@ import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/widgets/appBar.dart';
+import 'package:fresh_food/widgets/button.dart';
 import 'package:fresh_food/widgets/input_field.dart';
 
 class AddCard extends StatefulWidget {
@@ -62,47 +63,62 @@ class _AddCardState extends State<AddCard> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.screenWidth * 0.05,
-          ),
-          child: Column(
-            children: [
-              SizedBox(height: SizeConfig.screenWidth * 0.05),
-              InputField(
-                hintText: "Cardholder Name",
-                prefix: SvgPicture.asset(
-                  ThemeIcon.ACCOUNT,
-                  color: COLORS.MEDIUM_GREY,
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: SizeConfig.screenWidth * 0.05,
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: SizeConfig.screenWidth * 0.05),
+                    InputField(
+                      hintText: "Cardholder Name",
+                      prefix: SvgPicture.asset(
+                        ThemeIcon.ACCOUNT,
+                        color: COLORS.MEDIUM_GREY,
+                      ),
+                    ),
+                    SizedBox(height: SizeConfig.screenWidth * 0.025),
+                    InputField(
+                      hintText: "Card Number",
+                      prefix: SvgPicture.asset(
+                        ThemeIcon.PAYMENT,
+                        color: COLORS.MEDIUM_GREY,
+                      ),
+                    ),
+                    SizedBox(height: SizeConfig.screenWidth * 0.025),
+                    InputField(
+                      hintText: "Expiry Date",
+                      prefix: SvgPicture.asset(
+                        ThemeIcon.CALENDAR,
+                        color: COLORS.MEDIUM_GREY,
+                      ),
+                    ),
+                    SizedBox(height: SizeConfig.screenWidth * 0.025),
+                    InputField(
+                      hintText: "Security Number",
+                      prefix: SvgPicture.asset(
+                        ThemeIcon.SECURE,
+                        color: COLORS.MEDIUM_GREY,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: SizeConfig.screenWidth * 0.025),
-              InputField(
-                hintText: "Card Number",
-                prefix: SvgPicture.asset(
-                  ThemeIcon.PAYMENT,
-                  color: COLORS.MEDIUM_GREY,
-                ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                vertical: SizeConfig.screenWidth * 0.05,
               ),
-              SizedBox(height: SizeConfig.screenWidth * 0.025),
-              InputField(
-                hintText: "Expiry Date",
-                prefix: SvgPicture.asset(
-                  ThemeIcon.CALENDAR,
-                  color: COLORS.MEDIUM_GREY,
-                ),
+              child: Button(
+                title: "CONTINUE",
+                onPressed: () => Navigator.of(context).pop(),
               ),
-              SizedBox(height: SizeConfig.screenWidth * 0.025),
-              InputField(
-                hintText: "Security Number",
-                prefix: SvgPicture.asset(
-                  ThemeIcon.SECURE,
-                  color: COLORS.MEDIUM_GREY,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
