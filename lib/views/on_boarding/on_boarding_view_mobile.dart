@@ -136,9 +136,9 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                               width: 10,
                               margin: EdgeInsets.all(3),
                               decoration: BoxDecoration(
-                                color: (_slideController.index + 1) == index
-                                    ? Color(0xFFA6B8C9)
-                                    : COLORS.MEDIUM_GREY,
+                                color: (_slideController.index) == index
+                                    ? COLORS.MEDIUM_GREY
+                                    : Color(0xFFA6B8C9).withOpacity(0.3),
                                 shape: BoxShape.circle,
                               ),
                             ),
