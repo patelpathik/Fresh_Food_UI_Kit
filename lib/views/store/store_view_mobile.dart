@@ -5,7 +5,7 @@ import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
-import 'package:fresh_food/views/search/search_view.dart';
+import 'package:fresh_food/views/product/product_view.dart';
 import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
 
 class StoreMobilePortrait extends StatefulWidget {
@@ -96,7 +96,8 @@ class _StoreMobilePortraitState extends State<StoreMobilePortrait> {
         ],
       ),
     );
-    Widget storeImage = Container(
+    Widget storeImage = GestureDetector(
+      onTap: () => Navigator.pushNamed(context, Product.TAG),
       child: Image.asset(StoreImages.broccoli),
     );
 
