@@ -262,8 +262,7 @@ class _QuickShopMobilePortraitState extends State<QuickShopMobilePortrait> {
                       color: Colors.transparent,
                       child: InkWell(
                         splashColor: COLORS.GREEN,
-                        // TODO: add route to cart
-                        onTap: () {},
+                        onTap: () => Globals.homeNavStackIndex.setValue(5),
                         child: Container(
                           padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                           height: 35,
