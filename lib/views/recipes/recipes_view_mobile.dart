@@ -59,7 +59,9 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
       duration: Duration(milliseconds: 1000),
     );
     _animation = IntTween(begin: 50, end: 0).animate(_animationController);
-    _animation.addListener(() {if (mounted) setState(() {});});
+    _animation.addListener(() {
+      if (mounted) setState(() {});
+    });
   }
 
   @override
@@ -121,9 +123,12 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
                         color: Colors.transparent,
                         child: InkWell(
                           splashColor: COLORS.GREEN,
-                          onTap: () {if (mounted) setState(() {
-                            selectedFilterInd = filterOptions.indexOf(e);
-                          });},
+                          onTap: () {
+                            if (mounted)
+                              setState(() {
+                                selectedFilterInd = filterOptions.indexOf(e);
+                              });
+                          },
                           child: Container(
                             height: height,
                             width: eleW,

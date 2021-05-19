@@ -39,12 +39,13 @@ class _UserAccountMobilePortraitState extends State<UserAccountMobilePortrait> {
   }
 
   void initValues() {
-    if (mounted) setState(() {
-      txtFName.text = "Orlando Smith";
-      txtAddress.text = "42 Wallabe Way, London, United Kingdom";
-      txtEmail.text = "orlando.smith@gmail.com";
-      txtPass.text = "is it really required";
-    });
+    if (mounted)
+      setState(() {
+        txtFName.text = "Orlando Smith";
+        txtAddress.text = "42 Wallabe Way, London, United Kingdom";
+        txtEmail.text = "orlando.smith@gmail.com";
+        txtPass.text = "is it really required";
+      });
   }
 
   @override
@@ -212,7 +213,8 @@ class _UserAccountMobilePortraitState extends State<UserAccountMobilePortrait> {
                   ThemeSwitch(
                     value: prefNotification,
                     onPress: () {
-                      if (mounted) setState(() => prefNotification = !prefNotification);
+                      if (mounted)
+                        setState(() => prefNotification = !prefNotification);
                     },
                   ),
                 ],
@@ -232,7 +234,8 @@ class _UserAccountMobilePortraitState extends State<UserAccountMobilePortrait> {
                   ThemeSwitch(
                     value: prefNewsletter,
                     onPress: () {
-                      if (mounted) setState(() => prefNewsletter = !prefNewsletter);
+                      if (mounted)
+                        setState(() => prefNewsletter = !prefNewsletter);
                     },
                   ),
                 ],

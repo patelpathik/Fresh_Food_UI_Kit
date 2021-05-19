@@ -69,7 +69,9 @@ class _DeliveryOptionsState extends State<DeliveryOptions> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onTap: () { if (mounted) setState(() => selectedDeliverySpeed = 0);},
+              onTap: () {
+                if (mounted) setState(() => selectedDeliverySpeed = 0);
+              },
               child: Container(
                 height: cardW,
                 width: cardW,
@@ -132,7 +134,9 @@ class _DeliveryOptionsState extends State<DeliveryOptions> {
               ),
             ),
             GestureDetector(
-              onTap: ()  {if (mounted) setState(() => selectedDeliverySpeed = 1);},
+              onTap: () {
+                if (mounted) setState(() => selectedDeliverySpeed = 1);
+              },
               child: Container(
                 height: cardW,
                 width: cardW,
@@ -250,7 +254,9 @@ class _HScrollViewState extends State<HScrollView> {
               bool isFirst = index == 0;
               bool isLast = index == widget.items.length - 1;
               return GestureDetector(
-                onTap: () {if (mounted) setState(() => controller = index);},
+                onTap: () {
+                  if (mounted) setState(() => controller = index);
+                },
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 500),
                   height: 55,

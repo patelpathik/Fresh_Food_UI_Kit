@@ -39,12 +39,13 @@ class _SplashScreenState extends State<SplashScreen> {
       Timer(
         Duration(seconds: 2),
         () {
-          if (mounted) setState(() {
-            hw = 100;
-            dashColor = COLORS.GREEN;
-            curveHW = 75;
-            // curveOpacity = 0.5;
-          });
+          if (mounted)
+            setState(() {
+              hw = 100;
+              dashColor = COLORS.GREEN;
+              curveHW = 75;
+              // curveOpacity = 0.5;
+            });
           Timer(
             Duration(milliseconds: 1500),
             () => Navigator.pushReplacementNamed(context, SignIn.TAG),

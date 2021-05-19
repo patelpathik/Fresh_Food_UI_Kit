@@ -107,7 +107,9 @@ class _ItemTileState extends State<ItemTile> {
                 ),
               ),
               GestureDetector(
-                onTap: () {if (mounted) setState(() => isDeleted = true);},
+                onTap: () {
+                  if (mounted) setState(() => isDeleted = true);
+                },
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 500),
                   curve: Curves.fastOutSlowIn,
@@ -136,10 +138,9 @@ class _ItemTileState extends State<ItemTile> {
       },
       onHorizontalDragUpdate: (details) {
         if (widget.allowEdit) {
-          if (hDragDX <= details.globalPosition.dx)
-            if (mounted) setState(() => showOptions = false);
-          else
-            if (mounted) setState(() => showOptions = true);
+          if (hDragDX <= details.globalPosition.dx) if (mounted)
+            setState(() => showOptions = false);
+          else if (mounted) setState(() => showOptions = true);
         }
       },
       child: AnimatedContainer(

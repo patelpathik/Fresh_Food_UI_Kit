@@ -82,9 +82,12 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                 child: _slideController.index != 2
                     ? CleanButton(
                         title: "SKIP",
-                        onPressed: (){if (mounted) setState(() {
-                          _slideController.move(2, animation: true);
-                        });},
+                        onPressed: () {
+                          if (mounted)
+                            setState(() {
+                              _slideController.move(2, animation: true);
+                            });
+                        },
                       )
                     : Button(
                         title: "GET STARTED",
@@ -107,9 +110,12 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                   ),
                   child: Swiper(
                     controller: _slideController,
-                    onIndexChanged: (value) {if (mounted) setState(() {
-                      _slideController.index = value;
-                    });},
+                    onIndexChanged: (value) {
+                      if (mounted)
+                        setState(() {
+                          _slideController.index = value;
+                        });
+                    },
                     itemCount: 3,
                     itemBuilder: (context, index) {
                       TextStyle captionTextStyle = TextStyle(
@@ -216,16 +222,18 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                                           0) {
                                         bool v = !element.value;
                                         recipePreferences.forEach((e) {
-                                          if (mounted) setState(() {
-                                            e.value = v;
-                                          });
+                                          if (mounted)
+                                            setState(() {
+                                              e.value = v;
+                                            });
                                         });
                                       }
                                       /* change individual */
                                       else {
-                                        if (mounted) setState(() {
-                                          element.value = !element.value;
-                                        });
+                                        if (mounted)
+                                          setState(() {
+                                            element.value = !element.value;
+                                          });
                                       }
                                     },
                                   ),

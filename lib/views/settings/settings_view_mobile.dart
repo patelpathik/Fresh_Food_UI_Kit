@@ -62,10 +62,11 @@ class _SettingsMobilePortraitState extends State<SettingsMobilePortrait> {
 
     if (Globals.isCustomThemeSet != null &&
         Globals.customDarkModePref != null) {
-      if (mounted) setState(() {
-        currentDarkModePref =
-            Globals.isCustomThemeSet.getValue() ? "Custom" : "System";
-      });
+      if (mounted)
+        setState(() {
+          currentDarkModePref =
+              Globals.isCustomThemeSet.getValue() ? "Custom" : "System";
+        });
     }
 
     double cardH = AppBar().preferredSize.height;

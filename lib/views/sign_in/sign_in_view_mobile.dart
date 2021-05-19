@@ -120,7 +120,9 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
               child: Center(
                 child: CleanButton(
                   title: isSignUp ? "SIGN IN" : "CREATE ACCOUNT",
-                  onPressed: () {if (mounted) setState(() => isSignUp = !isSignUp);},
+                  onPressed: () {
+                    if (mounted) setState(() => isSignUp = !isSignUp);
+                  },
                 ),
               ),
             ),
@@ -174,7 +176,9 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
                     color: Colors.transparent,
                     child: InkWell(
                       splashColor: COLORS.GREEN,
-                      onTap: () {if (mounted) setState(() => isSignUp = false);},
+                      onTap: () {
+                        if (mounted) setState(() => isSignUp = false);
+                      },
                       child: Container(
                         height: 35,
                         width: 35,

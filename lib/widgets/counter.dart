@@ -25,7 +25,8 @@ class _CounterState extends State<Counter> {
   }
 
   void decreaseCounter() {
-    if (counterValue != 0) if (mounted) setState(() => counterValue = counterValue - 1);
+    if (counterValue != 0) if (mounted)
+      setState(() => counterValue = counterValue - 1);
   }
 
   @override

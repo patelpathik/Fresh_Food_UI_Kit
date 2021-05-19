@@ -134,12 +134,15 @@ class _RecipePostMobilePortraitState extends State<RecipePostMobilePortrait> {
                   onTap: () {
                     int ind = ingredientInfo.indexOf(element);
                     bool val = element.isSelected;
-                    if (mounted) setState(() => ingredientInfo[ind].isSelected = !val);
+                    if (mounted)
+                      setState(() => ingredientInfo[ind].isSelected = !val);
                     int totalIngredientsSelected = 0;
                     ingredientInfo.forEach((e) {
                       if (e.isSelected) totalIngredientsSelected++;
                     });
-                    if (mounted) setState(() => totalIngredients = totalIngredientsSelected);
+                    if (mounted)
+                      setState(
+                          () => totalIngredients = totalIngredientsSelected);
                   },
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 500),

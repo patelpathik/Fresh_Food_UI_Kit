@@ -184,7 +184,9 @@ class _MsgState extends State<Msg> {
           fontWeight: FontWeight.w400,
         );
     return GestureDetector(
-      onTap: () {if (mounted) setState(() => showTimeStamp = !showTimeStamp);},
+      onTap: () {
+        if (mounted) setState(() => showTimeStamp = !showTimeStamp);
+      },
       child: Container(
         alignment: Alignment.center,
         child: Container(

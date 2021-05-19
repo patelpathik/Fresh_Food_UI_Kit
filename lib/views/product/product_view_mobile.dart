@@ -275,10 +275,11 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
                             ? "SELECT"
                             : "ADD TO CART",
                         onPressed: () {
-                          if (mounted) setState(() {
-                            if (_expandableController.expanded)
-                              _expandableController.toggle();
-                          });
+                          if (mounted)
+                            setState(() {
+                              if (_expandableController.expanded)
+                                _expandableController.toggle();
+                            });
                         },
                         showCartIcon: !_expandableController.expanded,
                       ),

@@ -114,7 +114,9 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
                 Expanded(
                   child: TextField(
                     controller: _searchController,
-                    onChanged: (value) {if (mounted) setState(() => searchQuery = value);},
+                    onChanged: (value) {
+                      if (mounted) setState(() => searchQuery = value);
+                    },
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "What are you searching for?",
@@ -141,8 +143,8 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
                             context,
                             VoiceSearch.TAG,
                           );
-                          if (val == true)
-                            if (mounted) setState(() {
+                          if (val == true) if (mounted)
+                            setState(() {
                               searchQuery = "broccoli";
                               _searchController.text = "broccoli";
                             });
