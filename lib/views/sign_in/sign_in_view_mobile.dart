@@ -30,9 +30,9 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
     SizeConfig().init(context);
 
     if (Globals.isDarkMode != null) {
-      setState(() => isDark = Globals.isDarkMode.getValue());
+      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
 
@@ -120,7 +120,7 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
               child: Center(
                 child: CleanButton(
                   title: isSignUp ? "SIGN IN" : "CREATE ACCOUNT",
-                  onPressed: () => setState(() => isSignUp = !isSignUp),
+                  onPressed: () {if (mounted) setState(() => isSignUp = !isSignUp);},
                 ),
               ),
             ),
@@ -174,7 +174,7 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
                     color: Colors.transparent,
                     child: InkWell(
                       splashColor: COLORS.GREEN,
-                      onTap: () => setState(() => isSignUp = false),
+                      onTap: () {if (mounted) setState(() => isSignUp = false);},
                       child: Container(
                         height: 35,
                         width: 35,

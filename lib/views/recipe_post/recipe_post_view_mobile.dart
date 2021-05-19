@@ -58,7 +58,7 @@ class _RecipePostMobilePortraitState extends State<RecipePostMobilePortrait> {
     SizeConfig().init(context);
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
     double contentW = SizeConfig.screenWidth * 0.9;
@@ -134,12 +134,12 @@ class _RecipePostMobilePortraitState extends State<RecipePostMobilePortrait> {
                   onTap: () {
                     int ind = ingredientInfo.indexOf(element);
                     bool val = element.isSelected;
-                    setState(() => ingredientInfo[ind].isSelected = !val);
+                    if (mounted) setState(() => ingredientInfo[ind].isSelected = !val);
                     int totalIngredientsSelected = 0;
                     ingredientInfo.forEach((e) {
                       if (e.isSelected) totalIngredientsSelected++;
                     });
-                    setState(() => totalIngredients = totalIngredientsSelected);
+                    if (mounted) setState(() => totalIngredients = totalIngredientsSelected);
                   },
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 500),

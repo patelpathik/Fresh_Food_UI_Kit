@@ -53,7 +53,7 @@ class _LiveChatMobilePortraitState extends State<LiveChatMobilePortrait> {
 
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
     Widget appBar = Container(
@@ -184,7 +184,7 @@ class _MsgState extends State<Msg> {
           fontWeight: FontWeight.w400,
         );
     return GestureDetector(
-      onTap: () => setState(() => showTimeStamp = !showTimeStamp),
+      onTap: () {if (mounted) setState(() => showTimeStamp = !showTimeStamp);},
       child: Container(
         alignment: Alignment.center,
         child: Container(

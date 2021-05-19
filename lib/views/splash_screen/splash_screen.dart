@@ -28,18 +28,18 @@ class _SplashScreenState extends State<SplashScreen> {
     SizeConfig().init(context);
 
     if (Globals.isDarkMode != null) {
-      setState(() => isDark = Globals.isDarkMode.getValue());
+      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
 
     if (!isAnimationComplete) {
-      setState(() => isAnimationComplete = true);
+      if (mounted) setState(() => isAnimationComplete = true);
       Timer(
         Duration(seconds: 2),
         () {
-          setState(() {
+          if (mounted) setState(() {
             hw = 100;
             dashColor = COLORS.GREEN;
             curveHW = 75;

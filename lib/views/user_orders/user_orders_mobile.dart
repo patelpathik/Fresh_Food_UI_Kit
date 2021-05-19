@@ -59,7 +59,7 @@ class _UserOrdersMobilePortraitState extends State<UserOrdersMobilePortrait> {
 
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
     Widget appBar = Container(
@@ -140,7 +140,7 @@ class _OrderState extends State<Order> {
       /* call setState
       *  as `_expandableController` never calls setState upon change
       * */
-      setState(() {});
+      if (mounted) setState(() {});
     });
   }
 

@@ -26,7 +26,7 @@ class _VoiceSearchMobilePortraitState extends State<VoiceSearchMobilePortrait> {
   @override
   void initState() {
     timer = Timer.periodic(const Duration(milliseconds: 300), (timer) {
-      setState(() {
+      if (mounted) setState(() {
         /*
         * a = 10
         * b = 20
@@ -133,7 +133,7 @@ class _VoiceSearchMobilePortraitState extends State<VoiceSearchMobilePortrait> {
               color: COLORS.GREEN,
               child: InkWell(
                 splashColor: COLORS.MEDIUM_DARK_GREY,
-                onTap: () => setState(() => isSearching = true),
+                onTap: () {if (mounted) setState(() => isSearching = true);},
                 child: Container(
                   height: SizeConfig.screenWidth * 0.4,
                   width: SizeConfig.screenWidth * 0.4,

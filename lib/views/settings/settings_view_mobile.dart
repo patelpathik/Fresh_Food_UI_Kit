@@ -46,7 +46,7 @@ class _SettingsMobilePortraitState extends State<SettingsMobilePortrait> {
   void initState() {
     super.initState();
     if (Globals.isDarkMode != null) {
-      setState(() => isDark = Globals.isDarkMode.getValue());
+      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
     }
   }
 
@@ -56,13 +56,13 @@ class _SettingsMobilePortraitState extends State<SettingsMobilePortrait> {
 
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
 
     if (Globals.isCustomThemeSet != null &&
         Globals.customDarkModePref != null) {
-      setState(() {
+      if (mounted) setState(() {
         currentDarkModePref =
             Globals.isCustomThemeSet.getValue() ? "Custom" : "System";
       });
@@ -191,7 +191,7 @@ class _SettingsMobilePortraitState extends State<SettingsMobilePortrait> {
               onPress: () {
                 Globals.customDarkModePref
                     .setValue(!Globals.customDarkModePref.getValue());
-                setState(() {});
+                if (mounted) setState(() {});
               },
             ),
           ),

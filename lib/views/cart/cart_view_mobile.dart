@@ -56,7 +56,7 @@ class _CartMobilePortraitState extends State<CartMobilePortrait> {
   void initState() {
     super.initState();
     if (Globals.isDarkMode != null) {
-      setState(() => isDark = Globals.isDarkMode.getValue());
+      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
     }
   }
 
@@ -65,7 +65,7 @@ class _CartMobilePortraitState extends State<CartMobilePortrait> {
     SizeConfig().init(context);
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
     Widget appBar = Container(

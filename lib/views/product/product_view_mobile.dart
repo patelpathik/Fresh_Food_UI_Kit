@@ -63,9 +63,9 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
   void initState() {
     _expandableController.addListener(() {
       /* call setState
-      *  as `_expandableController` never calls setState upon change
+      *  as `_expandableController` never calls if (mounted) setState upon change
       * */
-      setState(() {});
+      if (mounted) setState(() {});
     });
     super.initState();
   }
@@ -76,7 +76,7 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
 
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
 
@@ -275,7 +275,7 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
                             ? "SELECT"
                             : "ADD TO CART",
                         onPressed: () {
-                          setState(() {
+                          if (mounted) setState(() {
                             if (_expandableController.expanded)
                               _expandableController.toggle();
                           });

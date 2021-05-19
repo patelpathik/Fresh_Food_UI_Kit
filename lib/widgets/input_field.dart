@@ -29,7 +29,7 @@ class _InputFieldState extends State<InputField> {
   Widget build(BuildContext context) {
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
     return ClipRRect(

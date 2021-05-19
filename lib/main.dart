@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           themeMode = ThemeMode.system;
         }
       }
-      setState(() => this.themeMode = themeMode);
+      if (mounted) setState(() => this.themeMode = themeMode);
       print("ThemeMode :: ${this.themeMode}");
     });
     Globals.customDarkModePref.listen((value) {
@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
           themeMode = ThemeMode.system;
         }
       }
-      setState(() => this.themeMode = themeMode);
+      if (mounted) setState(() => this.themeMode = themeMode);
       print("ThemeMode :: ${this.themeMode}");
     });
   }
@@ -74,7 +74,7 @@ class _MyAppState extends State<MyApp> {
         Globals.isCustomThemeSet != null &&
         !isSet) {
       listenToThemeChange();
-      setState(() => isSet = true);
+      if (mounted) setState(() => isSet = true);
     }
     return MaterialApp(
       title: 'Fresh Food',

@@ -20,10 +20,12 @@ class Counter extends StatefulWidget {
 class _CounterState extends State<Counter> {
   int counterValue = 0;
 
-  void increaseCounter() => setState(() => counterValue = counterValue + 1);
+  void increaseCounter() {
+    if (mounted) setState(() => counterValue = counterValue + 1);
+  }
 
   void decreaseCounter() {
-    if (counterValue != 0) setState(() => counterValue = counterValue - 1);
+    if (counterValue != 0) if (mounted) setState(() => counterValue = counterValue - 1);
   }
 
   @override

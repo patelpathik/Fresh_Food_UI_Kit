@@ -59,7 +59,7 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
       duration: Duration(milliseconds: 1000),
     );
     _animation = IntTween(begin: 50, end: 0).animate(_animationController);
-    _animation.addListener(() => setState(() {}));
+    _animation.addListener(() {if (mounted) setState(() {});});
   }
 
   @override
@@ -73,7 +73,7 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
     SizeConfig().init(context);
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
     Widget optionsBar() {
@@ -121,9 +121,9 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
                         color: Colors.transparent,
                         child: InkWell(
                           splashColor: COLORS.GREEN,
-                          onTap: () => setState(() {
+                          onTap: () {if (mounted) setState(() {
                             selectedFilterInd = filterOptions.indexOf(e);
-                          }),
+                          });},
                           child: Container(
                             height: height,
                             width: eleW,

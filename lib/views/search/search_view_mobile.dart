@@ -37,7 +37,7 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
     SizeConfig().init(context);
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
     Widget appBar = Container(
@@ -114,7 +114,7 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
                 Expanded(
                   child: TextField(
                     controller: _searchController,
-                    onChanged: (value) => setState(() => searchQuery = value),
+                    onChanged: (value) {if (mounted) setState(() => searchQuery = value);},
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "What are you searching for?",
@@ -142,7 +142,7 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
                             VoiceSearch.TAG,
                           );
                           if (val == true)
-                            setState(() {
+                            if (mounted) setState(() {
                               searchQuery = "broccoli";
                               _searchController.text = "broccoli";
                             });

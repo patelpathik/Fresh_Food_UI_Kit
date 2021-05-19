@@ -104,7 +104,7 @@ class _QuickShopMobilePortraitState extends State<QuickShopMobilePortrait> {
   void initState() {
     super.initState();
     if (Globals.isDarkMode != null) {
-      setState(() => isDark = Globals.isDarkMode.getValue());
+      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
     }
   }
 
@@ -113,15 +113,15 @@ class _QuickShopMobilePortraitState extends State<QuickShopMobilePortrait> {
     SizeConfig().init(context);
 
     if (!isMenuControllerListenerSet) {
-      setState(() => isMenuControllerListenerSet = true);
+      if (mounted) setState(() => isMenuControllerListenerSet = true);
       Globals.quickShopMenuController.listen((v) {
-        setState(() => selectedMenuInd = v);
+        if (mounted) setState(() => selectedMenuInd = v);
       });
     }
 
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
 

@@ -44,7 +44,7 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
 
   @override
   void initState() {
-    setState(() => _slideController.index = 0);
+    if (mounted) setState(() => _slideController.index = 0);
     super.initState();
   }
 
@@ -54,7 +54,7 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
 
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
         slides = [
           Slide(
             imagePath: isDark ? Images.onBoarding_Dark_1 : Images.onBoarding_1,
@@ -82,9 +82,9 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                 child: _slideController.index != 2
                     ? CleanButton(
                         title: "SKIP",
-                        onPressed: () => setState(() {
+                        onPressed: (){if (mounted) setState(() {
                           _slideController.move(2, animation: true);
-                        }),
+                        });},
                       )
                     : Button(
                         title: "GET STARTED",
@@ -107,9 +107,9 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                   ),
                   child: Swiper(
                     controller: _slideController,
-                    onIndexChanged: (value) => setState(() {
+                    onIndexChanged: (value) {if (mounted) setState(() {
                       _slideController.index = value;
-                    }),
+                    });},
                     itemCount: 3,
                     itemBuilder: (context, index) {
                       TextStyle captionTextStyle = TextStyle(
@@ -216,14 +216,14 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                                           0) {
                                         bool v = !element.value;
                                         recipePreferences.forEach((e) {
-                                          setState(() {
+                                          if (mounted) setState(() {
                                             e.value = v;
                                           });
                                         });
                                       }
                                       /* change individual */
                                       else {
-                                        setState(() {
+                                        if (mounted) setState(() {
                                           element.value = !element.value;
                                         });
                                       }

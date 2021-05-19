@@ -23,9 +23,9 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
   void initState() {
     super.initState();
     if (Globals.isDarkMode != null) {
-      setState(() => isDark = Globals.isDarkMode.getValue());
+      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
     }
-    setState(() => orderNumber = generateOrderNumber());
+    if (mounted) setState(() => orderNumber = generateOrderNumber());
   }
 
   int generateOrderNumber() {
@@ -39,7 +39,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
 
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
 

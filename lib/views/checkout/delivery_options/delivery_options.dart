@@ -27,7 +27,7 @@ class _DeliveryOptionsState extends State<DeliveryOptions> {
   void initState() {
     super.initState();
     if (Globals.isDarkMode != null) {
-      setState(() => isDark = Globals.isDarkMode.getValue());
+      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
     }
     for (int i = 0; i <= 3; i++) {
       DateTime date = DateTime.now().add(Duration(days: i + 1));
@@ -42,7 +42,7 @@ class _DeliveryOptionsState extends State<DeliveryOptions> {
   Widget build(BuildContext context) {
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
 
@@ -69,7 +69,7 @@ class _DeliveryOptionsState extends State<DeliveryOptions> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onTap: () => setState(() => selectedDeliverySpeed = 0),
+              onTap: () { if (mounted) setState(() => selectedDeliverySpeed = 0);},
               child: Container(
                 height: cardW,
                 width: cardW,
@@ -132,7 +132,7 @@ class _DeliveryOptionsState extends State<DeliveryOptions> {
               ),
             ),
             GestureDetector(
-              onTap: () => setState(() => selectedDeliverySpeed = 1),
+              onTap: ()  {if (mounted) setState(() => selectedDeliverySpeed = 1);},
               child: Container(
                 height: cardW,
                 width: cardW,
@@ -250,7 +250,7 @@ class _HScrollViewState extends State<HScrollView> {
               bool isFirst = index == 0;
               bool isLast = index == widget.items.length - 1;
               return GestureDetector(
-                onTap: () => setState(() => controller = index),
+                onTap: () {if (mounted) setState(() => controller = index);},
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 500),
                   height: 55,

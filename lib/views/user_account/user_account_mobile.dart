@@ -33,13 +33,13 @@ class _UserAccountMobilePortraitState extends State<UserAccountMobilePortrait> {
   void initState() {
     super.initState();
     if (Globals.isDarkMode != null) {
-      setState(() => isDark = Globals.isDarkMode.getValue());
+      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
     }
     initValues();
   }
 
   void initValues() {
-    setState(() {
+    if (mounted) setState(() {
       txtFName.text = "Orlando Smith";
       txtAddress.text = "42 Wallabe Way, London, United Kingdom";
       txtEmail.text = "orlando.smith@gmail.com";
@@ -53,7 +53,7 @@ class _UserAccountMobilePortraitState extends State<UserAccountMobilePortrait> {
 
     if (Globals.isDarkMode != null) {
       Globals.isDarkMode.listen((value) {
-        setState(() => isDark = value);
+        if (mounted) setState(() => isDark = value);
       });
     }
 
@@ -212,7 +212,7 @@ class _UserAccountMobilePortraitState extends State<UserAccountMobilePortrait> {
                   ThemeSwitch(
                     value: prefNotification,
                     onPress: () {
-                      setState(() => prefNotification = !prefNotification);
+                      if (mounted) setState(() => prefNotification = !prefNotification);
                     },
                   ),
                 ],
@@ -232,7 +232,7 @@ class _UserAccountMobilePortraitState extends State<UserAccountMobilePortrait> {
                   ThemeSwitch(
                     value: prefNewsletter,
                     onPress: () {
-                      setState(() => prefNewsletter = !prefNewsletter);
+                      if (mounted) setState(() => prefNewsletter = !prefNewsletter);
                     },
                   ),
                 ],
