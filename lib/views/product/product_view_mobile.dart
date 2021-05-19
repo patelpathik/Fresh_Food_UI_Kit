@@ -63,7 +63,7 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
   void initState() {
     _expandableController.addListener(() {
       /* call setState
-      *  as `_expandableController` never calls if (mounted) setState upon change
+      *  as `_expandableController` never calls setState upon change
       * */
       if (mounted) setState(() {});
     });

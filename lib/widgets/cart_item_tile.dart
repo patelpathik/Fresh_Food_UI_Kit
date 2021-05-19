@@ -8,13 +8,11 @@ import 'package:fresh_food/views/edit_quantity/edit_quantity_view.dart';
 
 class ItemTile extends StatefulWidget {
   final bool isDark;
-  final bool allowEdit;
   final CartItem itemDetails;
 
   const ItemTile({
     Key key,
     @required this.isDark,
-    this.allowEdit = false,
     @required this.itemDetails,
   }) : super(key: key);
 
@@ -137,10 +135,10 @@ class _ItemTileState extends State<ItemTile> {
         if (mounted) setState(() => hDragDX = 0);
       },
       onHorizontalDragUpdate: (details) {
-        if (widget.allowEdit) {
-          if (hDragDX <= details.globalPosition.dx) if (mounted)
-            setState(() => showOptions = false);
-          else if (mounted) setState(() => showOptions = true);
+        if (hDragDX <= details.globalPosition.dx) {
+          if (mounted) setState(() => showOptions = false);
+        } else {
+          if (mounted) setState(() => showOptions = true);
         }
       },
       child: AnimatedContainer(

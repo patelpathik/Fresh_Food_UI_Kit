@@ -72,7 +72,6 @@ class _OrderSummaryState extends State<OrderSummary> {
       this.cartItems.forEach((item) {
         Widget card = ItemTile(
           isDark: isDark,
-          allowEdit: true,
           itemDetails: item,
         );
         cartList.add(card);

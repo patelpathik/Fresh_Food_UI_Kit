@@ -143,11 +143,13 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
                             context,
                             VoiceSearch.TAG,
                           );
-                          if (val == true) if (mounted)
-                            setState(() {
-                              searchQuery = "broccoli";
-                              _searchController.text = "broccoli";
-                            });
+                          if (val == true) {
+                            if (mounted)
+                              setState(() {
+                                searchQuery = "broccoli";
+                                _searchController.text = "broccoli";
+                              });
+                          }
                         },
                         child: Container(
                           height: AppBar().preferredSize.height * 0.8,
