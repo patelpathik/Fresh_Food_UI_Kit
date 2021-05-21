@@ -23,14 +23,13 @@ class _HomeMobilePortraitState extends State<HomeMobilePortrait> {
 
   @override
   void initState() {
-    if (mounted) setState(() => index = Globals.homeNavStackIndex.getValue());
+    setState(() => index = Globals.homeNavStackIndex.getValue());
     Globals.homeNavStackIndex.listen(
       (value) {
-        if (mounted)
-          setState(() {
-            if (index != 4) Globals.lastKnownHomeNavStackIndex.setValue(index);
-            index = value;
-          });
+        setState(() {
+          if (index != 4) Globals.lastKnownHomeNavStackIndex.setValue(index);
+          index = value;
+        });
       },
     );
     super.initState();

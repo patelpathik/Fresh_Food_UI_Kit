@@ -1,7 +1,9 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/utils/app_template.dart';
-import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/views/checkout/add_card/add_card.dart';
 import 'package:fresh_food/views/edit_quantity/edit_quantity_view.dart';
 import 'package:fresh_food/views/home/home_view.dart';
@@ -23,6 +25,10 @@ import 'views/home/home_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('google_fonts/OFL.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
   runApp(MyApp());
 }
 
@@ -32,112 +38,77 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode themeMode = ThemeMode.system;
-  bool isSet = false;
-
-  void listenToThemeChange() {
-    Globals.isCustomThemeSet.listen((value) {
-      ThemeMode themeMode = ThemeMode.system;
-      if ((Globals.customDarkModePref != null &&
-          Globals.isCustomThemeSet != null)) {
-        if (Globals.isCustomThemeSet.getValue()) {
-          themeMode = (Globals.customDarkModePref.getValue()
-              ? ThemeMode.dark
-              : ThemeMode.light);
-        } else {
-          themeMode = ThemeMode.system;
-        }
-      }
-      if (mounted) setState(() => this.themeMode = themeMode);
-      print("ThemeMode :: ${this.themeMode}");
-    });
-    Globals.customDarkModePref.listen((value) {
-      ThemeMode themeMode = ThemeMode.system;
-      if ((Globals.customDarkModePref != null &&
-          Globals.isCustomThemeSet != null)) {
-        if (Globals.isCustomThemeSet.getValue()) {
-          themeMode = (Globals.customDarkModePref.getValue()
-              ? ThemeMode.dark
-              : ThemeMode.light);
-        } else {
-          themeMode = ThemeMode.system;
-        }
-      }
-      if (mounted) setState(() => this.themeMode = themeMode);
-      print("ThemeMode :: ${this.themeMode}");
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (Globals.customDarkModePref != null &&
-        Globals.isCustomThemeSet != null &&
-        !isSet) {
-      listenToThemeChange();
-      if (mounted) setState(() => isSet = true);
-    }
-    return MaterialApp(
-      title: 'Fresh Food',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme().getAppTheme(),
-      darkTheme: AppTheme().getDarkTheme(),
-      themeMode: themeMode,
-      builder: (context, child) => AppTemplate(child: child),
-      onGenerateRoute: (settings) {
-        Widget page;
-        switch (settings.name) {
-          case "/":
-          case SplashScreen.TAG:
-            page = SplashScreen();
-            break;
-          case SignIn.TAG:
-            page = SignIn();
-            break;
-          case OnBoarding.TAG:
-            page = OnBoarding();
-            break;
-          case Store.TAG:
-            page = Store();
-            break;
-          case Search.TAG:
-            page = Search();
-            break;
-          case VoiceSearch.TAG:
-            page = VoiceSearch();
-            break;
-          case Product.TAG:
-            page = Product();
-            break;
-          case HomeView.TAG:
-            page = HomeView();
-            break;
-          case Recipes.TAG:
-            page = Recipes();
-            break;
-          case EditQuantity.TAG:
-            page = EditQuantity();
-            break;
-          case Checkout.TAG:
-            page = Checkout();
-            break;
-          case AddCard.TAG:
-            page = AddCard();
-            break;
-          case UserAccount.TAG:
-            page = UserAccount();
-            break;
-          case UserOrders.TAG:
-            page = UserOrders();
-            break;
-          case LiveChat.TAG:
-            page = LiveChat();
-            break;
-        }
-        return SwipeablePageRoute(
-          builder: (context) => AppTemplate(child: page),
-          settings: settings,
-        );
-      },
+    return AdaptiveTheme(
+      light: AppTheme().getAppTheme(),
+      dark: AppTheme().getDarkTheme(),
+      initial: AdaptiveThemeMode.system,
+      builder: (light, dark) => MaterialApp(
+        title: 'Fresh Food',
+        debugShowCheckedModeBanner: false,
+        // theme: AppTheme().getAppTheme(),
+        // darkTheme: AppTheme().getDarkTheme(),
+        theme: light,
+        darkTheme: dark,
+        // themeMode: themeMode,
+        builder: (context, child) => AppTemplate(child: child),
+        onGenerateRoute: (settings) {
+          Widget page;
+          switch (settings.name) {
+            case "/":
+            case SplashScreen.TAG:
+              page = SplashScreen();
+              break;
+            case SignIn.TAG:
+              page = SignIn();
+              break;
+            case OnBoarding.TAG:
+              page = OnBoarding();
+              break;
+            case Store.TAG:
+              page = Store();
+              break;
+            case Search.TAG:
+              page = Search();
+              break;
+            case VoiceSearch.TAG:
+              page = VoiceSearch();
+              break;
+            case Product.TAG:
+              page = Product();
+              break;
+            case HomeView.TAG:
+              page = HomeView();
+              break;
+            case Recipes.TAG:
+              page = Recipes();
+              break;
+            case EditQuantity.TAG:
+              page = EditQuantity();
+              break;
+            case Checkout.TAG:
+              page = Checkout();
+              break;
+            case AddCard.TAG:
+              page = AddCard();
+              break;
+            case UserAccount.TAG:
+              page = UserAccount();
+              break;
+            case UserOrders.TAG:
+              page = UserOrders();
+              break;
+            case LiveChat.TAG:
+              page = LiveChat();
+              break;
+          }
+          return SwipeablePageRoute(
+            builder: (context) => AppTemplate(child: page),
+            settings: settings,
+          );
+        },
+      ),
     );
   }
 }

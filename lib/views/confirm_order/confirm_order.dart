@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_food/theme/app_theme.dart';
@@ -22,10 +23,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
   @override
   void initState() {
     super.initState();
-    if (Globals.isDarkMode != null) {
-      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
-    }
-    if (mounted) setState(() => orderNumber = generateOrderNumber());
+    setState(() => orderNumber = generateOrderNumber());
   }
 
   int generateOrderNumber() {
@@ -36,11 +34,12 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
 
     TextStyle descTxtStyle = Theme.of(context).textTheme.headline6.copyWith(

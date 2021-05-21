@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -38,36 +39,37 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
   ];
   SwiperController _slideController = new SwiperController();
 
-  bool isDark =
-      Globals.isDarkMode != null ? Globals.isDarkMode.getValue() : false;
+  bool isDark = false;
   double bottomBoxH = AppBar().preferredSize.height * 2;
 
   @override
   void initState() {
-    if (mounted) setState(() => _slideController.index = 0);
+    setState(() => _slideController.index = 0);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-        slides = [
-          Slide(
-            imagePath: isDark ? Images.onBoarding_Dark_1 : Images.onBoarding_1,
-            caption: "Quickly search and add healthy foods to your cart",
-          ),
-          Slide(
-            imagePath: isDark ? Images.onBoarding_Dark_2 : Images.onBoarding_2,
-            caption:
-                "With one click you can add every ingredient for a recipe to your cart",
-          ),
-        ];
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
+
+    slides = [
+      Slide(
+        imagePath: isDark ? Images.onBoarding_Dark_1 : Images.onBoarding_1,
+        caption: "Quickly search and add healthy foods to your cart",
+      ),
+      Slide(
+        imagePath: isDark ? Images.onBoarding_Dark_2 : Images.onBoarding_2,
+        caption:
+            "With one click you can add every ingredient for a recipe to your cart",
+      ),
+    ];
     return Scaffold(
       body: Stack(
         children: [
@@ -83,10 +85,9 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                     ? CleanButton(
                         title: "SKIP",
                         onPressed: () {
-                          if (mounted)
-                            setState(() {
-                              _slideController.move(2, animation: true);
-                            });
+                          setState(() {
+                            _slideController.move(2, animation: true);
+                          });
                         },
                       )
                     : Button(
@@ -111,10 +112,9 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                   child: Swiper(
                     controller: _slideController,
                     onIndexChanged: (value) {
-                      if (mounted)
-                        setState(() {
-                          _slideController.index = value;
-                        });
+                      setState(() {
+                        _slideController.index = value;
+                      });
                     },
                     itemCount: 3,
                     itemBuilder: (context, index) {
@@ -222,18 +222,16 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
                                           0) {
                                         bool v = !element.value;
                                         recipePreferences.forEach((e) {
-                                          if (mounted)
-                                            setState(() {
-                                              e.value = v;
-                                            });
+                                          setState(() {
+                                            e.value = v;
+                                          });
                                         });
                                       }
                                       /* change individual */
                                       else {
-                                        if (mounted)
-                                          setState(() {
-                                            element.value = !element.value;
-                                          });
+                                        setState(() {
+                                          element.value = !element.value;
+                                        });
                                       }
                                     },
                                   ),

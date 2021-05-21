@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/theme/images.dart';
-import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/views/checkout/payment_method/payment_method.dart';
 import 'package:fresh_food/widgets/appBar.dart';
@@ -32,31 +31,21 @@ class _UserAccountMobilePortraitState extends State<UserAccountMobilePortrait> {
   @override
   void initState() {
     super.initState();
-    if (Globals.isDarkMode != null) {
-      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
-    }
     initValues();
   }
 
   void initValues() {
-    if (mounted)
-      setState(() {
-        txtFName.text = "Orlando Smith";
-        txtAddress.text = "42 Wallabe Way, London, United Kingdom";
-        txtEmail.text = "orlando.smith@gmail.com";
-        txtPass.text = "is it really required";
-      });
+    setState(() {
+      txtFName.text = "Orlando Smith";
+      txtAddress.text = "42 Wallabe Way, London, United Kingdom";
+      txtEmail.text = "orlando.smith@gmail.com";
+      txtPass.text = "is it really required";
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
-    }
 
     Widget appBar = Container(
       alignment: Alignment.center,
@@ -213,8 +202,7 @@ class _UserAccountMobilePortraitState extends State<UserAccountMobilePortrait> {
                   ThemeSwitch(
                     value: prefNotification,
                     onPress: () {
-                      if (mounted)
-                        setState(() => prefNotification = !prefNotification);
+                      setState(() => prefNotification = !prefNotification);
                     },
                   ),
                 ],
@@ -234,8 +222,7 @@ class _UserAccountMobilePortraitState extends State<UserAccountMobilePortrait> {
                   ThemeSwitch(
                     value: prefNewsletter,
                     onPress: () {
-                      if (mounted)
-                        setState(() => prefNewsletter = !prefNewsletter);
+                      setState(() => prefNewsletter = !prefNewsletter);
                     },
                   ),
                 ],

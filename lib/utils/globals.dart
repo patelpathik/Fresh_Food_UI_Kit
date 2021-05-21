@@ -6,9 +6,7 @@ class Globals {
 
   static double menuBarH = AppBar().preferredSize.height + 20;
 
-  static Preference<bool> isDarkMode;
-  static Preference<bool> isCustomThemeSet;
-  static Preference<bool> customDarkModePref;
+  static Preference<bool> systemDarkMode;
   static Preference<int> homeNavStackIndex;
   static Preference<int> lastKnownHomeNavStackIndex;
   static Preference<int> quickShopMenuController;
@@ -16,16 +14,8 @@ class Globals {
 
   static Future<bool> updatePrefs() async {
     final preference = await StreamingSharedPreferences.instance;
-    isDarkMode = preference.getBool(
-      "isDarkMode",
-      defaultValue: false,
-    );
-    isCustomThemeSet = preference.getBool(
-      "isCustomThemeSet",
-      defaultValue: false,
-    );
-    customDarkModePref = preference.getBool(
-      "customDarkModePref",
+    systemDarkMode = preference.getBool(
+      "systemDarkMode",
       defaultValue: false,
     );
     homeNavStackIndex = preference.getInt("homeNavStackIndex", defaultValue: 0);

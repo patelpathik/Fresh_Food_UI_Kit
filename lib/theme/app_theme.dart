@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class COLORS {
   COLORS._();
@@ -14,8 +15,11 @@ class COLORS {
 }
 
 class AppTheme {
+  String fontFamily = GoogleFonts.encodeSansSemiCondensed().fontFamily;
+
   ThemeData getAppTheme() {
     return ThemeData(
+      fontFamily: fontFamily,
       scaffoldBackgroundColor: COLORS.WHITE,
       appBarTheme: AppBarTheme(
         elevation: 0.0,
@@ -29,6 +33,7 @@ class AppTheme {
 
   ThemeData getDarkTheme() {
     return ThemeData(
+      fontFamily: fontFamily,
       scaffoldBackgroundColor: COLORS.DARKER_GREY,
       appBarTheme: AppBarTheme(
         elevation: 0.0,

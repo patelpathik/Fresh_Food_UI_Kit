@@ -1,3 +1,5 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:animated_rotation/animated_rotation.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -65,7 +67,7 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
       /* call setState
       *  as `_expandableController` never calls setState upon change
       * */
-      if (mounted) setState(() {});
+      setState(() {});
     });
     super.initState();
   }
@@ -73,11 +75,12 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
 
     Widget appBar = Container(
@@ -160,13 +163,21 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
               height: 50,
               width: 50,
               padding: EdgeInsets.all(15),
-              child: RotatedBox(
-                quarterTurns: _expandableController.expanded ? 2 : 0,
+              child: AnimatedRotation(
+                duration: Duration(milliseconds: 500),
+                angle: _expandableController.expanded ? 180 : 0,
                 child: SvgPicture.asset(
                   ThemeIcon.CHEVRON,
                   color: COLORS.MEDIUM_DARK_GREY,
                 ),
               ),
+              // child: RotatedBox(
+              //   quarterTurns: _expandableController.expanded ? 2 : 0,
+              //   child: SvgPicture.asset(
+              //     ThemeIcon.CHEVRON,
+              //     color: COLORS.MEDIUM_DARK_GREY,
+              //   ),
+              // ),
             ),
           ],
         ),
@@ -177,6 +188,7 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
         hasIcon: false,
         tapHeaderToExpand: true,
         tapBodyToCollapse: true,
+        animationDuration: Duration(milliseconds: 500),
       ),
     );
 
@@ -275,11 +287,10 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
                             ? "SELECT"
                             : "ADD TO CART",
                         onPressed: () {
-                          if (mounted)
-                            setState(() {
-                              if (_expandableController.expanded)
-                                _expandableController.toggle();
-                            });
+                          setState(() {
+                            if (_expandableController.expanded)
+                              _expandableController.toggle();
+                          });
                         },
                         showCartIcon: !_expandableController.expanded,
                       ),

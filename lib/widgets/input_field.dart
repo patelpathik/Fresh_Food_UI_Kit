@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/utils/globals.dart';
@@ -27,10 +28,12 @@ class _InputFieldState extends State<InputField> {
 
   @override
   Widget build(BuildContext context) {
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(8)),

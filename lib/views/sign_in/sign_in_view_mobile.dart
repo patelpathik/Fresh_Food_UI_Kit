@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_food/theme/app_theme.dart';
@@ -10,6 +11,8 @@ import 'package:fresh_food/widgets/button.dart';
 import 'package:fresh_food/widgets/input_field.dart';
 
 class SignInMobilePortrait extends StatefulWidget {
+  const SignInMobilePortrait({Key key}) : super(key: key);
+
   @override
   _SignInMobilePortraitState createState() => _SignInMobilePortraitState();
 }
@@ -20,20 +23,19 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
 
   static bool isSignUp = false;
 
-  bool isDark =
-      Globals.isDarkMode != null ? Globals.isDarkMode.getValue() : false;
+  bool isDark = false;
 
   double bottomBoxH = AppBar().preferredSize.height * 2;
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
-    if (Globals.isDarkMode != null) {
-      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
 
     signIn = [
@@ -121,7 +123,7 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
                 child: CleanButton(
                   title: isSignUp ? "SIGN IN" : "CREATE ACCOUNT",
                   onPressed: () {
-                    if (mounted) setState(() => isSignUp = !isSignUp);
+                    setState(() => isSignUp = !isSignUp);
                   },
                 ),
               ),
@@ -177,7 +179,7 @@ class _SignInMobilePortraitState extends State<SignInMobilePortrait> {
                     child: InkWell(
                       splashColor: COLORS.GREEN,
                       onTap: () {
-                        if (mounted) setState(() => isSignUp = false);
+                        setState(() => isSignUp = false);
                       },
                       child: Container(
                         height: 35,

@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_food/models/paragraph.dart';
@@ -16,8 +17,7 @@ class RecipePostMobilePortrait extends StatefulWidget {
 }
 
 class _RecipePostMobilePortraitState extends State<RecipePostMobilePortrait> {
-  bool isDark =
-      Globals.isDarkMode != null ? Globals.isDarkMode.getValue() : false;
+  bool isDark = false;
   double titleBarH = AppBar().preferredSize.height + 20;
 
   int totalIngredients = 3;
@@ -56,10 +56,12 @@ class _RecipePostMobilePortraitState extends State<RecipePostMobilePortrait> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
     double contentW = SizeConfig.screenWidth * 0.9;
     double spaceAmt = SizeConfig.screenWidth * 0.1;
@@ -134,15 +136,14 @@ class _RecipePostMobilePortraitState extends State<RecipePostMobilePortrait> {
                   onTap: () {
                     int ind = ingredientInfo.indexOf(element);
                     bool val = element.isSelected;
-                    if (mounted)
-                      setState(() => ingredientInfo[ind].isSelected = !val);
+
+                    setState(() => ingredientInfo[ind].isSelected = !val);
                     int totalIngredientsSelected = 0;
                     ingredientInfo.forEach((e) {
                       if (e.isSelected) totalIngredientsSelected++;
                     });
-                    if (mounted)
-                      setState(
-                          () => totalIngredients = totalIngredientsSelected);
+
+                    setState(() => totalIngredients = totalIngredientsSelected);
                   },
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 500),

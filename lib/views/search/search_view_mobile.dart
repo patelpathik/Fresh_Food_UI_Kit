@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_food/theme/app_theme.dart';
@@ -16,8 +17,7 @@ class SearchMobilePortrait extends StatefulWidget {
 }
 
 class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
-  bool isDark =
-      Globals.isDarkMode != null ? Globals.isDarkMode.getValue() : false;
+  bool isDark = false;
   String searchQuery = "";
 
   TextEditingController _searchController = new TextEditingController();
@@ -35,10 +35,12 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
     Widget appBar = Container(
       height: (AppBar().preferredSize.height + 20) * 2,
@@ -115,7 +117,7 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
                   child: TextField(
                     controller: _searchController,
                     onChanged: (value) {
-                      if (mounted) setState(() => searchQuery = value);
+                      setState(() => searchQuery = value);
                     },
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -144,11 +146,10 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
                             VoiceSearch.TAG,
                           );
                           if (val == true) {
-                            if (mounted)
-                              setState(() {
-                                searchQuery = "broccoli";
-                                _searchController.text = "broccoli";
-                              });
+                            setState(() {
+                              searchQuery = "broccoli";
+                              _searchController.text = "broccoli";
+                            });
                           }
                         },
                         child: Container(

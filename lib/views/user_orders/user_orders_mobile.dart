@@ -6,7 +6,6 @@ import 'package:fresh_food/models/cart_item.dart';
 import 'package:fresh_food/models/paragraph.dart';
 import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/theme/images.dart';
-import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/widgets/appBar.dart';
 import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
@@ -57,11 +56,6 @@ class _UserOrdersMobilePortraitState extends State<UserOrdersMobilePortrait> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
-    }
     Widget appBar = Container(
       alignment: Alignment.center,
       decoration: CurvedShadowDecoration.getDecoration(isDark: isDark),
@@ -140,7 +134,7 @@ class _OrderState extends State<Order> {
       /* call setState
       *  as `_expandableController` never calls setState upon change
       * */
-      if (mounted) setState(() {});
+      setState(() {});
     });
   }
 

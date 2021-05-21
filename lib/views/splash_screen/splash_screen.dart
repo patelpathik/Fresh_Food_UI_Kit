@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/utils/globals.dart';
@@ -20,32 +21,30 @@ class _SplashScreenState extends State<SplashScreen> {
   static Color dashColor = COLORS.WHITE;
 
   bool isAnimationComplete = false;
-  bool isDark =
-      Globals.isDarkMode != null ? Globals.isDarkMode.getValue() : false;
+  bool isDark = false;
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
-    if (Globals.isDarkMode != null) {
-      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
 
     if (!isAnimationComplete) {
-      if (mounted) setState(() => isAnimationComplete = true);
+      setState(() => isAnimationComplete = true);
       Timer(
         Duration(seconds: 2),
         () {
-          if (mounted)
-            setState(() {
-              hw = 100;
-              dashColor = COLORS.GREEN;
-              curveHW = 75;
-              // curveOpacity = 0.5;
-            });
+          setState(() {
+            hw = 100;
+            dashColor = COLORS.GREEN;
+            curveHW = 75;
+            // curveOpacity = 0.5;
+          });
           Timer(
             Duration(milliseconds: 1500),
             () => Navigator.pushReplacementNamed(context, SignIn.TAG),

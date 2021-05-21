@@ -24,6 +24,7 @@ class CheckoutMobilePortrait extends StatefulWidget {
 }
 
 class _CheckoutMobilePortraitState extends State<CheckoutMobilePortrait> {
+  bool isDark = false;
   String title = "Delivery Address";
   KeyboardVisibilityController _keyboardVisibilityController;
   bool buttonVisibility = true;
@@ -40,11 +41,11 @@ class _CheckoutMobilePortraitState extends State<CheckoutMobilePortrait> {
       else if (value == 2)
         title = "Payment Method";
       else if (value == 3) title = "Order Summary";
-      if (mounted) setState(() => this.title = title);
+      setState(() => this.title = title);
     });
     _keyboardVisibilityController = new KeyboardVisibilityController();
     _keyboardVisibilityController.onChange.listen((event) {
-      if (mounted) setState(() => buttonVisibility = !event);
+      setState(() => buttonVisibility = !event);
     });
   }
 
@@ -61,7 +62,7 @@ class _CheckoutMobilePortraitState extends State<CheckoutMobilePortrait> {
   Widget build(BuildContext context) {
     Widget appBar = Container(
       decoration: CurvedShadowDecoration.getDecoration(
-        isDark: Globals.isDarkMode.getValue(),
+        isDark: isDark,
       ),
       child: Column(
         children: [

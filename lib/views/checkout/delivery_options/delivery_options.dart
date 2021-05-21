@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_food/theme/app_theme.dart';
@@ -26,9 +27,6 @@ class _DeliveryOptionsState extends State<DeliveryOptions> {
   @override
   void initState() {
     super.initState();
-    if (Globals.isDarkMode != null) {
-      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
-    }
     for (int i = 0; i <= 3; i++) {
       DateTime date = DateTime.now().add(Duration(days: i + 1));
       var formatter = DateFormat.MMM();
@@ -40,10 +38,12 @@ class _DeliveryOptionsState extends State<DeliveryOptions> {
 
   @override
   Widget build(BuildContext context) {
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
 
     TextStyle titleTxtStyle = Theme.of(context).textTheme.headline6.copyWith(
@@ -70,7 +70,7 @@ class _DeliveryOptionsState extends State<DeliveryOptions> {
           children: [
             GestureDetector(
               onTap: () {
-                if (mounted) setState(() => selectedDeliverySpeed = 0);
+                setState(() => selectedDeliverySpeed = 0);
               },
               child: Container(
                 height: cardW,
@@ -135,7 +135,7 @@ class _DeliveryOptionsState extends State<DeliveryOptions> {
             ),
             GestureDetector(
               onTap: () {
-                if (mounted) setState(() => selectedDeliverySpeed = 1);
+                setState(() => selectedDeliverySpeed = 1);
               },
               child: Container(
                 height: cardW,
@@ -255,7 +255,7 @@ class _HScrollViewState extends State<HScrollView> {
               bool isLast = index == widget.items.length - 1;
               return GestureDetector(
                 onTap: () {
-                  if (mounted) setState(() => controller = index);
+                  setState(() => controller = index);
                 },
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 500),

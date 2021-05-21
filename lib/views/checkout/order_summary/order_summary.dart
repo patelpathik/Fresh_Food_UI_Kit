@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_food/models/cart_item.dart';
 import 'package:fresh_food/models/paragraph.dart';
@@ -50,20 +51,14 @@ class _OrderSummaryState extends State<OrderSummary> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-    if (Globals.isDarkMode != null) {
-      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
 
     Widget cartItems() {

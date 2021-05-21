@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_food/theme/app_theme.dart';
@@ -50,11 +51,12 @@ class _LiveChatMobilePortraitState extends State<LiveChatMobilePortrait> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
     Widget appBar = Container(
       alignment: Alignment.center,
@@ -185,7 +187,7 @@ class _MsgState extends State<Msg> {
         );
     return GestureDetector(
       onTap: () {
-        if (mounted) setState(() => showTimeStamp = !showTimeStamp);
+        setState(() => showTimeStamp = !showTimeStamp);
       },
       child: Container(
         alignment: Alignment.center,

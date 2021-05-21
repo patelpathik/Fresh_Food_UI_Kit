@@ -26,12 +26,11 @@ class _VoiceSearchMobilePortraitState extends State<VoiceSearchMobilePortrait> {
   @override
   void initState() {
     timer = Timer.periodic(const Duration(milliseconds: 300), (timer) {
-      if (mounted)
-        setState(() {
-          oddHW = oddHW + evenHW;
-          evenHW = oddHW - evenHW;
-          oddHW = oddHW - evenHW;
-        });
+      setState(() {
+        oddHW = oddHW + evenHW;
+        evenHW = oddHW - evenHW;
+        oddHW = oddHW - evenHW;
+      });
     });
     super.initState();
   }
@@ -127,7 +126,7 @@ class _VoiceSearchMobilePortraitState extends State<VoiceSearchMobilePortrait> {
               child: InkWell(
                 splashColor: COLORS.MEDIUM_DARK_GREY,
                 onTap: () {
-                  if (mounted) setState(() => isSearching = true);
+                  setState(() => isSearching = true);
                 },
                 child: Container(
                   height: SizeConfig.screenWidth * 0.4,

@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_food/theme/app_theme.dart';
@@ -101,28 +102,21 @@ class _QuickShopMobilePortraitState extends State<QuickShopMobilePortrait> {
   bool isMenuControllerListenerSet = false;
 
   @override
-  void initState() {
-    super.initState();
-    if (Globals.isDarkMode != null) {
-      if (mounted) setState(() => isDark = Globals.isDarkMode.getValue());
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
     if (!isMenuControllerListenerSet) {
-      if (mounted) setState(() => isMenuControllerListenerSet = true);
+      setState(() => isMenuControllerListenerSet = true);
       Globals.quickShopMenuController.listen((v) {
-        if (mounted) setState(() => selectedMenuInd = v);
+        setState(() => selectedMenuInd = v);
       });
     }
-
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
 
     double contentW = SizeConfig.screenWidth * 0.8;

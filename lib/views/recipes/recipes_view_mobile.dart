@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,8 +17,7 @@ class RecipesMobilePortrait extends StatefulWidget {
 
 class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
     with SingleTickerProviderStateMixin {
-  bool isDark =
-      Globals.isDarkMode != null ? Globals.isDarkMode.getValue() : false;
+  bool isDark = false;
   AnimationController _animationController;
   Animation _animation;
   double titleBarH = AppBar().preferredSize.height + 20;
@@ -60,7 +60,7 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
     );
     _animation = IntTween(begin: 50, end: 0).animate(_animationController);
     _animation.addListener(() {
-      if (mounted) setState(() {});
+      setState(() {});
     });
   }
 
@@ -73,10 +73,12 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    if (Globals.isDarkMode != null) {
-      Globals.isDarkMode.listen((value) {
-        if (mounted) setState(() => isDark = value);
-      });
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
     }
     Widget optionsBar() {
       double height = AppBar().preferredSize.height;
@@ -124,10 +126,9 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
                         child: InkWell(
                           splashColor: COLORS.GREEN,
                           onTap: () {
-                            if (mounted)
-                              setState(() {
-                                selectedFilterInd = filterOptions.indexOf(e);
-                              });
+                            setState(() {
+                              selectedFilterInd = filterOptions.indexOf(e);
+                            });
                           },
                           child: Container(
                             height: height,
