@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -60,6 +61,13 @@ class _CheckoutMobilePortraitState extends State<CheckoutMobilePortrait> {
 
   @override
   Widget build(BuildContext context) {
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
+    }
     Widget appBar = Container(
       decoration: CurvedShadowDecoration.getDecoration(
         isDark: isDark,

@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:animated_rotation/animated_rotation.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:fresh_food/models/cart_item.dart';
 import 'package:fresh_food/models/paragraph.dart';
 import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/theme/images.dart';
+import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/widgets/appBar.dart';
 import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
@@ -55,6 +57,13 @@ class _UserOrdersMobilePortraitState extends State<UserOrdersMobilePortrait> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      setState(() => isDark = Globals.systemDarkMode.getValue());
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      setState(() => isDark = true);
+    } else {
+      setState(() => isDark = false);
+    }
 
     Widget appBar = Container(
       alignment: Alignment.center,
