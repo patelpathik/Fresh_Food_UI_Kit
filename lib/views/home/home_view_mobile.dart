@@ -27,7 +27,8 @@ class _HomeMobilePortraitState extends State<HomeMobilePortrait> {
     Globals.homeNavStackIndex.listen(
       (value) {
         setState(() {
-          if (index != 4) Globals.lastKnownHomeNavStackIndex.setValue(index);
+          if (index != 4 && index != 7)
+            Globals.lastKnownHomeNavStackIndex.setValue(index);
           index = value;
         });
       },
