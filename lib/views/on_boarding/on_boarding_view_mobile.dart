@@ -70,6 +70,157 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
             "With one click you can add every ingredient for a recipe to your cart",
       ),
     ];
+    Widget customPagination = Container(
+      margin: EdgeInsets.only(top: 25, bottom: 25),
+      height: 20,
+      width: 100,
+      alignment: Alignment.center,
+      child: ListView.builder(
+        padding: EdgeInsets.zero,
+        scrollDirection: Axis.horizontal,
+        itemCount: 3,
+        shrinkWrap: true,
+        itemBuilder: (context, index) => Align(
+          alignment: Alignment.center,
+          child: AnimatedContainer(
+            duration: new Duration(milliseconds: 500),
+            curve: Curves.easeInCubic,
+            height: 10,
+            width: 10,
+            margin: EdgeInsets.all(3),
+            decoration: BoxDecoration(
+              color: (_slideController.index) == index
+                  ? COLORS.MEDIUM_GREY
+                  : Color(0xFFA6B8C9).withOpacity(0.3),
+              shape: BoxShape.circle,
+            ),
+          ),
+        ),
+      ),
+    );
+    Widget onBoardingSwiper = Swiper(
+      controller: _slideController,
+      onIndexChanged: (value) {
+        setState(() {
+          _slideController.index = value;
+        });
+      },
+      itemCount: 3,
+      itemBuilder: (context, index) {
+        TextStyle captionTextStyle = TextStyle(
+          fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
+          color: COLORS.MEDIUM_GREY,
+        );
+        /* image with caption */
+        if (index != 2) {
+          return Container(
+            color: Colors.transparent,
+            padding: EdgeInsets.only(
+              left: SizeConfig.screenWidth * 0.1,
+              right: SizeConfig.screenWidth * 0.1,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(height: 25),
+                Container(
+                  alignment: Alignment.center,
+                  width: SizeConfig.screenWidth,
+                  child: SvgPicture.asset(
+                    slides[index].imagePath,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                Text(
+                  slides[index].caption,
+                  textAlign: TextAlign.center,
+                  style: captionTextStyle,
+                ),
+              ],
+            ),
+          );
+        }
+        /* recipe preferences */
+        else {
+          TextStyle titleTextStyle = TextStyle(
+            fontSize: Theme.of(context).textTheme.headline6.fontSize,
+            color: COLORS.MEDIUM_GREY,
+          );
+          TextStyle descTextStyle = TextStyle(
+            fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
+            color: COLORS.MEDIUM_GREY,
+          );
+          List<Widget> elements = [
+            Container(
+              padding: EdgeInsets.only(top: 50),
+              child: Text(
+                "Recipe Preferences",
+                style: titleTextStyle,
+              ),
+            ),
+          ];
+
+          List<Widget> scrollItems = [];
+          recipePreferences.forEach((element) {
+            scrollItems.add(
+              Container(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(element.preference, style: descTextStyle),
+                    ThemeSwitch(
+                      value: element.value,
+                      onPress: () {
+                        /* change all */
+                        if (recipePreferences.indexOf(element) == 0) {
+                          bool v = !element.value;
+                          recipePreferences.forEach((e) {
+                            setState(() {
+                              e.value = v;
+                            });
+                          });
+                        }
+                        /* change individual */
+                        else {
+                          setState(() {
+                            element.value = !element.value;
+                          });
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            );
+          });
+
+          elements.add(SingleChildScrollView(
+            child: Column(children: scrollItems),
+          ));
+
+          elements.add(Text(
+            "Tailor your Recipes feed exactly how you like it",
+            textAlign: TextAlign.center,
+            style: descTextStyle,
+          ));
+          return Container(
+            color: Colors.transparent,
+            padding: EdgeInsets.only(
+              left: SizeConfig.screenWidth * 0.1,
+              right: SizeConfig.screenWidth * 0.1,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: elements,
+            ),
+          );
+        }
+      },
+      loop: false,
+      curve: Curves.fastOutSlowIn,
+      autoplay: false,
+    );
     return Scaffold(
       body: Stack(
         children: [
@@ -105,170 +256,19 @@ class _OnBoardingMobilePortraitState extends State<OnBoardingMobilePortrait> {
             children: [
               Expanded(
                 child: Container(
-                  width: SizeConfig.screenWidth,
                   decoration: CurvedShadowDecoration.getDecoration(
                     isDark: isDark,
                   ),
-                  child: Swiper(
-                    controller: _slideController,
-                    onIndexChanged: (value) {
-                      setState(() {
-                        _slideController.index = value;
-                      });
-                    },
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      TextStyle captionTextStyle = TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.subtitle1.fontSize,
-                        color: COLORS.MEDIUM_GREY,
-                      );
-                      Widget customPagination = Container(
-                        margin: EdgeInsets.only(bottom: 25),
-                        height: 20,
-                        width: 100,
-                        alignment: Alignment.center,
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 3,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) => Align(
-                            alignment: Alignment.center,
-                            child: AnimatedContainer(
-                              duration: new Duration(milliseconds: 500),
-                              curve: Curves.easeInCubic,
-                              height: 10,
-                              width: 10,
-                              margin: EdgeInsets.all(3),
-                              decoration: BoxDecoration(
-                                color: (_slideController.index) == index
-                                    ? COLORS.MEDIUM_GREY
-                                    : Color(0xFFA6B8C9).withOpacity(0.3),
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                          ),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          width: SizeConfig.screenWidth,
+                          child: onBoardingSwiper,
                         ),
-                      );
-                      /* image with caption */
-                      if (index != 2) {
-                        return Container(
-                          color: Colors.transparent,
-                          padding: EdgeInsets.only(
-                            left: SizeConfig.screenWidth * 0.1,
-                            right: SizeConfig.screenWidth * 0.1,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(height: 25),
-                              Container(
-                                alignment: Alignment.center,
-                                width: SizeConfig.screenWidth,
-                                child: SvgPicture.asset(
-                                  slides[index].imagePath,
-                                  fit: BoxFit.fitWidth,
-                                ),
-                              ),
-                              Text(
-                                slides[index].caption,
-                                textAlign: TextAlign.center,
-                                style: captionTextStyle,
-                              ),
-                              customPagination,
-                            ],
-                          ),
-                        );
-                      }
-                      /* recipe preferences */
-                      else {
-                        TextStyle titleTextStyle = TextStyle(
-                          fontSize:
-                              Theme.of(context).textTheme.headline6.fontSize,
-                          color: COLORS.MEDIUM_GREY,
-                        );
-                        TextStyle descTextStyle = TextStyle(
-                          fontSize:
-                              Theme.of(context).textTheme.subtitle1.fontSize,
-                          color: COLORS.MEDIUM_GREY,
-                        );
-                        List<Widget> elements = [
-                          Container(
-                            padding: EdgeInsets.only(top: 50),
-                            child: Text(
-                              "Recipe Preferences",
-                              style: titleTextStyle,
-                            ),
-                          ),
-                        ];
-
-                        List<Widget> scrollItems = [];
-                        recipePreferences.forEach((element) {
-                          scrollItems.add(
-                            Container(
-                              padding: EdgeInsets.only(top: 10, bottom: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(element.preference,
-                                      style: descTextStyle),
-                                  ThemeSwitch(
-                                    value: element.value,
-                                    onPress: () {
-                                      /* change all */
-                                      if (recipePreferences.indexOf(element) ==
-                                          0) {
-                                        bool v = !element.value;
-                                        recipePreferences.forEach((e) {
-                                          setState(() {
-                                            e.value = v;
-                                          });
-                                        });
-                                      }
-                                      /* change individual */
-                                      else {
-                                        setState(() {
-                                          element.value = !element.value;
-                                        });
-                                      }
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        });
-
-                        elements.add(SingleChildScrollView(
-                          child: Column(children: scrollItems),
-                        ));
-
-                        elements.add(Text(
-                          "Tailor your Recipes feed exactly how you like it",
-                          textAlign: TextAlign.center,
-                          style: descTextStyle,
-                        ));
-                        return Container(
-                          color: Colors.transparent,
-                          padding: EdgeInsets.only(
-                            left: SizeConfig.screenWidth * 0.1,
-                            right: SizeConfig.screenWidth * 0.1,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ...elements,
-                              customPagination,
-                            ],
-                          ),
-                        );
-                      }
-                    },
-                    loop: false,
-                    curve: Curves.fastOutSlowIn,
-                    autoplay: false,
+                      ),
+                      customPagination,
+                    ],
                   ),
                 ),
               ),
