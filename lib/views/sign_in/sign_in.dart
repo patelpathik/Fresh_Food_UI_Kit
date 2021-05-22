@@ -1,4 +1,3 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_food/responsive/orientation_layout.dart';
 import 'package:fresh_food/responsive/screen_type_layout.dart';
@@ -12,7 +11,6 @@ class SignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark;
     return ScreenTypeLayout(
       mobile: OrientationLayout(
         portrait: SignInMobilePortrait(),
