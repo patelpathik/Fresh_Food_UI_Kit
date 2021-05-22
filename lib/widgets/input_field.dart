@@ -9,6 +9,7 @@ class InputField extends StatefulWidget {
   final Widget prefix;
   final Widget suffix;
   final TextEditingController controller;
+  final FocusNode focusNode;
 
   const InputField({
     Key key,
@@ -17,6 +18,7 @@ class InputField extends StatefulWidget {
     this.prefix,
     this.suffix,
     this.controller,
+    this.focusNode,
   }) : super(key: key);
 
   @override
@@ -38,6 +40,7 @@ class _InputFieldState extends State<InputField> {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(8)),
       child: TextField(
+        focusNode: widget.focusNode,
         controller: widget.controller,
         textAlignVertical: TextAlignVertical.center,
         obscureText: widget.obscureText,
