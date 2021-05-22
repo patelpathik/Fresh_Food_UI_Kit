@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,7 +20,15 @@ class LiveChatMobilePortrait extends StatefulWidget {
 }
 
 class _LiveChatMobilePortraitState extends State<LiveChatMobilePortrait> {
+  TextEditingController msgBoxController = new TextEditingController();
+  FocusNode msgBoxFocusNode = new FocusNode();
   bool isDark = false;
+  List<String> automatedReplies = [
+    "Give me a moment, I'll be back soon",
+    "Thanks for the note, I'll revert you ASAP",
+    "Thanks for the message. I'll be back in a while.",
+    "We're OOO, catch you later.",
+  ];
   List<Message> chatLog = [
     Message(
       messageText: "Meow can I help you",
@@ -97,6 +108,8 @@ class _LiveChatMobilePortraitState extends State<LiveChatMobilePortrait> {
         width: SizeConfig.screenWidth * 0.9,
         margin: EdgeInsets.all(SizeConfig.screenWidth * 0.05),
         child: InputField(
+          focusNode: this.msgBoxFocusNode,
+          controller: this.msgBoxController,
           hintText: "Say something...",
           suffix: Container(
             height: 25,
@@ -106,7 +119,34 @@ class _LiveChatMobilePortraitState extends State<LiveChatMobilePortrait> {
               color: COLORS.GREEN,
               shape: BoxShape.circle,
             ),
-            child: SvgPicture.asset(ThemeIcon.SELECT, color: COLORS.WHITE),
+            child: GestureDetector(
+              onTap: () {
+                Message newMsg = Message(
+                  messageText: msgBoxController.text,
+                  messageType: MessageType.SENT,
+                  time: "now",
+                );
+                Message newMsgReceived = Message(
+                  messageText: automatedReplies[Random().nextInt(
+                    automatedReplies.length,
+                  )],
+                  messageType: MessageType.RECEIVED,
+                  time: "now",
+                );
+                if (msgBoxController.text.trim().isNotEmpty) {
+                  setState(() {
+                    chatLog.add(newMsg);
+                    msgBoxController.clear();
+                  });
+                  new Timer(
+                    Duration(milliseconds: 1000),
+                    () => setState(() => chatLog.add(newMsgReceived)),
+                  );
+                }
+                msgBoxFocusNode.unfocus();
+              },
+              child: SvgPicture.asset(ThemeIcon.SELECT, color: COLORS.WHITE),
+            ),
           ),
         ),
       );
@@ -124,8 +164,10 @@ class _LiveChatMobilePortraitState extends State<LiveChatMobilePortrait> {
             appBar,
             SizedBox(height: SizeConfig.screenWidth * 0.05),
             Expanded(
-              child: Column(
-                children: getMessages(),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: getMessages(),
+                ),
               ),
             ),
             msgBox(),
@@ -189,18 +231,81 @@ class _MsgState extends State<Msg> {
       onTap: () {
         setState(() => showTimeStamp = !showTimeStamp);
       },
-      child: Container(
+      child: Stack(
         alignment: Alignment.center,
-        child: Container(
-          width: SizeConfig.screenWidth * 0.9,
-          margin: EdgeInsets.all(SizeConfig.screenWidth * 0.025),
-          padding: EdgeInsets.all(SizeConfig.screenWidth * 0.05),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            color: bgColor,
+        children: [
+          /*
+          * To create a block of size, which is consumed by positioned
+          * widget below block is required to acquire space
+          * this is to keep exact space between multiple messages
+          * this is not ideal way but WIP
+          */
+          AnimatedOpacity(
+            opacity: 0,
+            duration: Duration(milliseconds: 0),
+            child: Container(
+              alignment: Alignment.center,
+              child: Container(
+                width: SizeConfig.screenWidth * 0.9,
+                margin: EdgeInsets.all(SizeConfig.screenWidth * 0.025),
+                padding: EdgeInsets.all(SizeConfig.screenWidth * 0.05),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: bgColor,
+                ),
+                child: Text(widget.msg.messageText, style: txtStyle),
+              ),
+            ),
           ),
-          child: Text(widget.msg.messageText, style: txtStyle),
-        ),
+          /* timestamp */
+          Align(
+            alignment: Alignment.centerRight,
+            child: AnimatedOpacity(
+              opacity: showTimeStamp ? 1 : 0,
+              duration: Duration(milliseconds: 500),
+              child: Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: SizeConfig.screenWidth * 0.05,
+                ),
+                alignment: Alignment.center,
+                height: AppBar().preferredSize.height,
+                width: AppBar().preferredSize.height * 1.5,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SvgPicture.asset(ThemeIcon.CLOCK,
+                        color: COLORS.MEDIUM_GREY),
+                    Text(
+                      widget.msg.time,
+                      style: TextStyle(color: COLORS.MEDIUM_GREY),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          /* msg content */
+          AnimatedPositioned(
+            // curve: Curves.fastOutSlowIn,
+            duration: Duration(milliseconds: 500),
+            left: showTimeStamp
+                ? -(AppBar().preferredSize.height * 1.5)
+                : SizeConfig.screenWidth * 0.025,
+            child: Container(
+              alignment: Alignment.center,
+              child: Container(
+                width: SizeConfig.screenWidth * 0.9,
+                margin: EdgeInsets.all(SizeConfig.screenWidth * 0.025),
+                padding: EdgeInsets.all(SizeConfig.screenWidth * 0.05),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: bgColor,
+                ),
+                child: Text(widget.msg.messageText, style: txtStyle),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
