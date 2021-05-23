@@ -1,16 +1,14 @@
-# fresh_food
+# Fresh Food
 
-Fresh Food UI Kit.
+Fresh Food UI Kit, [UI Kit](https://www.behance.net/gallery/87629875/Fresh-Food-UI-Kit-for-Adobe-XD) implementation in Flutter, designed by [Daniel White](https://www.behance.net/forever-dansky) & [Lindsay Munro](https://www.behance.net/lindsaymun78e5).
 
-## Getting Started
+[<img src="screenshots/play-store-logo.png" width="450" >](https://play.google.com/store/apps/details?id=com.pathikpatel.fresh_food)
 
-This project is a starting point for a Flutter application.
+## Credits
+- [Daniel White](https://www.behance.net/forever-dansky) & [Lindsay Munro](https://www.behance.net/lindsaymun78e5) for this UI Kit.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots (Mobile)
+<img src="screenshots/flutter_01_framed.png" height="480px" > <img src="screenshots/flutter_02_framed.png" height="480px" > <img src="screenshots/flutter_03_framed.png" height="480px" > <img src="screenshots/flutter_04_framed.png" height="480px" > <img src="screenshots/flutter_05_framed.png" height="480px" > <img src="screenshots/flutter_06_framed.png" height="480px" > <img src="screenshots/flutter_07_framed.png" height="480px" > <img src="screenshots/flutter_08_framed.png" height="480px" >
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots (Tablet & Web)
+- Coming Soon :)
