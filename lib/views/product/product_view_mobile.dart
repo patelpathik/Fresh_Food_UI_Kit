@@ -8,6 +8,7 @@ import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
+import 'package:fresh_food/widgets/appBar.dart';
 import 'package:fresh_food/widgets/button.dart';
 import 'package:fresh_food/widgets/quantity_selector.dart';
 
@@ -83,44 +84,30 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
       setState(() => isDark = false);
     }
 
-    Widget appBar = Container(
-      height: AppBar().preferredSize.height,
-      child: Row(
-        children: [
-          Container(
-            height: 40,
-            width: 40,
-            margin: EdgeInsets.all(8),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(25)),
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  splashColor: COLORS.GREEN,
-                  onTap: () => Navigator.of(context).pop(),
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: SvgPicture.asset(
-                      ThemeIcon.ARROW,
-                      color: COLORS.MEDIUM_DARK_GREY,
-                    ),
-                  ),
-                ),
+    Widget appBar = ThemeAppBar.appBar(
+      context,
+      title: "Broccoli",
+      leading: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(55)),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            splashColor: COLORS.GREEN,
+            onTap: () => Navigator.of(context).pop(),
+            child: Container(
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              height: 35,
+              width: 55,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              child: SvgPicture.asset(
+                ThemeIcon.ARROW,
+                color: COLORS.MEDIUM_DARK_GREY,
               ),
             ),
           ),
-          Expanded(
-            child: Center(
-              child: Text(
-                "Broccoli",
-                style: Theme.of(context).appBarTheme.titleTextStyle.copyWith(
-                      fontSize: Theme.of(context).textTheme.headline6.fontSize,
-                    ),
-              ),
-            ),
-          ),
-          SizedBox(height: 48, width: 48),
-        ],
+        ),
       ),
     );
     Widget quantitySelector = ExpandablePanel(
@@ -249,7 +236,6 @@ class _ProductMobilePortraitState extends State<ProductMobilePortrait> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 20),
             /* app bar */
             appBar,
             SizedBox(height: 10),

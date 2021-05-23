@@ -6,6 +6,7 @@ import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
+import 'package:fresh_food/widgets/appBar.dart';
 import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
 
 class RecipesMobilePortrait extends StatefulWidget {
@@ -294,63 +295,33 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
           : BoxDecoration(),
       child: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Container(height: 55, width: 75),
-              Expanded(
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
-                  curve: Curves.fastOutSlowIn,
-                  height: 55,
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Recipes",
-                    style: Theme.of(context)
-                        .appBarTheme
-                        .titleTextStyle
-                        .copyWith(
-                          fontSize:
-                              Theme.of(context).textTheme.headline6.fontSize,
-                          color: _animation.value == 0
-                              ? COLORS.MEDIUM_DARK_GREY
-                              : COLORS.WHITE,
-                        ),
-                  ),
-                ),
-              ),
-              AnimatedContainer(
-                duration: Duration(milliseconds: 500),
-                curve: Curves.fastOutSlowIn,
-                height: 55,
-                width: 55,
-                margin: EdgeInsets.only(top: 20, right: 20),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(55)),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      splashColor: COLORS.GREEN,
-                      onTap: () {},
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        height: 35,
-                        width: 55,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: SvgPicture.asset(
-                          ThemeIcon.SEARCH,
-                          color: _animation.value == 0
-                              ? COLORS.MEDIUM_DARK_GREY
-                              : COLORS.WHITE,
-                        ),
-                      ),
+          ThemeAppBar.appBar(
+            context,
+            title: "Recipes",
+            trailing: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(55)),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  splashColor: COLORS.GREEN,
+                  onTap: () {},
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    height: 35,
+                    width: 55,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset(
+                      ThemeIcon.SEARCH,
+                      color: _animation.value == 0
+                          ? COLORS.MEDIUM_DARK_GREY
+                          : COLORS.WHITE,
                     ),
                   ),
                 ),
               ),
-            ],
+            ),
           ),
           _animation.value == 0 ? optionsBar() : Container(),
         ],

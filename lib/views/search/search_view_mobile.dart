@@ -7,6 +7,7 @@ import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/views/product/product_view.dart';
 import 'package:fresh_food/views/voice_search/voice_search_view.dart';
+import 'package:fresh_food/widgets/appBar.dart';
 import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
 
 class SearchMobilePortrait extends StatefulWidget {
@@ -48,53 +49,27 @@ class _SearchMobilePortraitState extends State<SearchMobilePortrait> {
       child: Column(
         children: [
           /* search text & x button */
-          Container(
-            height: AppBar().preferredSize.height + 20,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Container(height: 55, width: 75),
-                Expanded(
+          ThemeAppBar.appBar(
+            context,
+            title: "Search",
+            trailing: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(55)),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  splashColor: COLORS.GREEN,
+                  onTap: () => Globals.homeNavStackIndex.setValue(0),
                   child: Container(
-                    height: 55,
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Search",
-                      style: Theme.of(context)
-                          .appBarTheme
-                          .titleTextStyle
-                          .copyWith(
-                            fontSize:
-                                Theme.of(context).textTheme.headline6.fontSize,
-                          ),
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    height: 35,
+                    width: 55,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
                     ),
+                    child: SvgPicture.asset(ThemeIcon.CLOSE),
                   ),
                 ),
-                Container(
-                  height: 55,
-                  width: 55,
-                  margin: EdgeInsets.only(top: 20, right: 20),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(55)),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        splashColor: COLORS.GREEN,
-                        onTap: () => Globals.homeNavStackIndex.setValue(0),
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          height: 35,
-                          width: 55,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: SvgPicture.asset(ThemeIcon.CLOSE),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
           /* search icon, text field &  voice button */

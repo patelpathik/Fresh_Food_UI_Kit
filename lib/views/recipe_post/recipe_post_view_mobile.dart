@@ -6,6 +6,7 @@ import 'package:fresh_food/theme/app_theme.dart';
 import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
+import 'package:fresh_food/widgets/appBar.dart';
 import 'package:fresh_food/widgets/button.dart';
 
 class RecipePostMobilePortrait extends StatefulWidget {
@@ -216,93 +217,51 @@ class _RecipePostMobilePortraitState extends State<RecipePostMobilePortrait> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        toolbarHeight: titleBarH,
-        flexibleSpace: AnimatedContainer(
-          duration: Duration(milliseconds: 500),
-          height: titleBarH,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              AnimatedContainer(
-                duration: Duration(milliseconds: 500),
-                curve: Curves.fastOutSlowIn,
-                height: 55,
+      appBar: ThemeAppBar.appBar(
+        context,
+        title: "Mixed Berry Melody",
+        leading: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(55)),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              splashColor: COLORS.GREEN,
+              onTap: () => Globals.homeNavStackIndex.setValue(2),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                height: 35,
                 width: 55,
-                margin: EdgeInsets.only(top: 20, left: 20),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(55)),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      splashColor: COLORS.GREEN,
-                      onTap: () => Globals.homeNavStackIndex.setValue(2),
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        height: 35,
-                        width: 55,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: SvgPicture.asset(
-                          ThemeIcon.ARROW,
-                          color: COLORS.MEDIUM_DARK_GREY,
-                        ),
-                      ),
-                    ),
-                  ),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: SvgPicture.asset(
+                  ThemeIcon.ARROW,
+                  color: COLORS.MEDIUM_DARK_GREY,
                 ),
               ),
-              Expanded(
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
-                  curve: Curves.fastOutSlowIn,
-                  height: 55,
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Mixed Berry Melody",
-                    style: Theme.of(context)
-                        .appBarTheme
-                        .titleTextStyle
-                        .copyWith(
-                          fontSize:
-                              Theme.of(context).textTheme.headline6.fontSize,
-                          color: COLORS.MEDIUM_DARK_GREY,
-                        ),
-                  ),
-                ),
-              ),
-              AnimatedContainer(
-                duration: Duration(milliseconds: 500),
-                curve: Curves.fastOutSlowIn,
-                height: 55,
+            ),
+          ),
+        ),
+        trailing: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(55)),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              splashColor: COLORS.GREEN,
+              onTap: () {},
+              child: Container(
+                padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                height: 35,
                 width: 55,
-                margin: EdgeInsets.only(top: 20, right: 20),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(55)),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      splashColor: COLORS.GREEN,
-                      onTap: () {},
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        height: 35,
-                        width: 55,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: SvgPicture.asset(
-                          ThemeIcon.SHARE,
-                          color: COLORS.MEDIUM_DARK_GREY,
-                        ),
-                      ),
-                    ),
-                  ),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: SvgPicture.asset(
+                  ThemeIcon.SHARE,
+                  color: COLORS.MEDIUM_DARK_GREY,
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),

@@ -7,6 +7,7 @@ import 'package:fresh_food/theme/images.dart';
 import 'package:fresh_food/utils/globals.dart';
 import 'package:fresh_food/utils/sizeconfig.dart';
 import 'package:fresh_food/views/product/product_view.dart';
+import 'package:fresh_food/widgets/appBar.dart';
 import 'package:fresh_food/widgets/bottom_curved_shadow.dart';
 
 class StoreMobilePortrait extends StatefulWidget {
@@ -52,51 +53,29 @@ class _StoreMobilePortraitState extends State<StoreMobilePortrait> {
     } else {
       setState(() => isDark = false);
     }
-    Widget appBar = Container(
-      height: AppBar().preferredSize.height + 20,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Container(height: 55, width: 75),
-          Expanded(
+    Widget appBar = ThemeAppBar.appBar(
+      context,
+      title: "Store",
+      trailing: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(55)),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            splashColor: COLORS.GREEN,
+            onTap: () {
+              Globals.homeNavStackIndex.setValue(1);
+            },
             child: Container(
-              height: 55,
-              alignment: Alignment.center,
-              child: Text(
-                "Store",
-                style: Theme.of(context).appBarTheme.titleTextStyle.copyWith(
-                      fontSize: Theme.of(context).textTheme.headline6.fontSize,
-                    ),
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              height: 35,
+              width: 55,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
               ),
+              child: SvgPicture.asset(ThemeIcon.SEARCH),
             ),
           ),
-          Container(
-            height: 55,
-            width: 55,
-            margin: EdgeInsets.only(top: 20, right: 20),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(55)),
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  splashColor: COLORS.GREEN,
-                  onTap: () {
-                    Globals.homeNavStackIndex.setValue(1);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    height: 35,
-                    width: 55,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: SvgPicture.asset(ThemeIcon.SEARCH),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
     Widget storeImage = GestureDetector(
