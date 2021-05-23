@@ -46,3 +46,5 @@ app.*.map.json
 
 # Dir Icon
 /Icon?
+# android build & releases
+/android/app/release
