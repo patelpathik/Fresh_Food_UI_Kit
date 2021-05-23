@@ -26,11 +26,12 @@ class _HomeMobilePortraitState extends State<HomeMobilePortrait> {
     setState(() => index = Globals.homeNavStackIndex.getValue());
     Globals.homeNavStackIndex.listen(
       (value) {
-        setState(() {
-          if (index != 4 && index != 7)
-            Globals.lastKnownHomeNavStackIndex.setValue(index);
-          index = value;
-        });
+        if (mounted)
+          setState(() {
+            if (index != 4 && index != 7)
+              Globals.lastKnownHomeNavStackIndex.setValue(index);
+            index = value;
+          });
       },
     );
     super.initState();

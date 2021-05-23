@@ -53,7 +53,7 @@ class _RecipesMobilePortraitState extends State<RecipesMobilePortrait>
     super.initState();
     Globals.homeNavStackIndex.listen((value) {
       /* open the image */
-      if (value == 2) _animationController.forward();
+      if (value == 2 && mounted) _animationController.forward();
     });
     _animationController = AnimationController(
       vsync: this,
